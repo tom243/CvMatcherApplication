@@ -1,0 +1,517 @@
+<div class="profileCoverJ"></div>
+
+
+<div class="profileWrapper" ng-init="init();getMainJson()">
+    <h3 class="navigation"></h3>
+    <header>
+        <h2 class="profileTitle">My Profile</h2>
+    </header>
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+    <ul class="nav engineering" ng-init="tab=0">
+        <li ng-class="{active:tab == 0, selected:tab == 0}"><a ng-click="tab = 0">Personal
+            Information</a></li>
+        <li ng-class="{active:tab == 1, selected:tab == 1}"><a id="tab1" ng-click="tab = 1">Professional
+            Experience</a></li>
+
+    </ul>
+
+    <div class="tab-content userProfile">
+        <div ng-show="tab == 0" class="tabsContent fade in active">
+            <!-- Content from here -->
+            <form ng-submit="submitUserDetails()"><!--
+                <h4>Personal Information</h4>-->
+
+                <h6 class="requiredError"> *All the fields are required! ( except LinkedIn )</h6>
+                <label>ID:</label> <input type="text" ng-model="jobSeeker['personal_id']"
+                                          class="form-control" name="name" required
+                                          value="{{jobSeeker['personal_id']}}">
+                <label>Name:</label> <input type="text" required ng-model="jobSeeker['first_name']"
+                                            class="form-control" name="name"
+                                            value="{{jobSeeker['first_name']}}"> <label
+                >Family:</label> <input type="text" required ng-model="jobSeeker['last_name']"
+                                        class="form-control" name="family"
+                                        value="{{jobSeeker['last_name']}}"> <label
+                >Date of birth:</label>
+                <input placeholder="Date" class="form-control birthDay" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" value="{{dateBirth}} ">
+
+
+                <label>Address:</label> <input class="form-control" ng-model="jobSeeker['address']" id="geocomplete"
+                                               type="text"
+                                               name="location" value="{{jobDetails['address']}}" required
+                                               placeholder="Type in an address" size="90" autocomplete="on">
+
+
+                <label
+                >Phone:</label> <input type="text" required ng-model="jobSeeker['phone_number']"
+                                       class="form-control phoneNumber" name="phone"
+                                       value="{{jobSeeker['phone_number']}}">
+                <label>LinkedIn:</label> <input type="text" ng-model="jobSeeker['linkedin']"
+                                                class="form-control linkedin" name="name"
+                                                value="{{jobSeeker['linkedin']}}">
+
+
+                <div class="buttonBorder">
+                    <button class="sendB" type="submit" class="btn btn-default">
+                        <img class="Garrow" src="images/Garrow.png">
+                        Save
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div ng-show="tab == 1" class="tabsContent fade in active">
+            <!-- Content from here -->
+            <form ng-submit="submitUserCV()">
+                <!--
+                                <h4>Professional Experience</h4>-->
+
+                <h6 class="requiredError"> *All the fields are required!</h6>
+                <label>Sector:</label> <select name="sector" required
+                                               class="form-control jobSeekerCVsector">
+                <option ng-selected="jobSeekerCV.sector == ''" value="">
+                </option>
+                <option ng-selected="jobSeekerCV.sector == 'software engineering'" value="software engineering">Software
+                    Engineering
+                </option>
+                <option ng-selected="jobSeekerCV.sector == 'industrial'" value="industrial">
+                    Industrial Engineering and
+                    Management
+                </option>
+                <option ng-selected="jobSeekerCV.sector == 'electrical'" value="electrical">Electrical
+                    Engineering
+                </option>
+                <option ng-selected="jobSeekerCV.sector == 'mechanical'" value="mechanical">Mechanical
+                    Engineering
+                </option>
+            </select> <label>Candidate type:</label> <select name="candidate" required
+                                                             class="form-control jobSeekerCVCandidateType"
+            >
+                <option value=""></option>
+                <option ng-selected="jobSeekerCV.candidate_type[0] == 'student'" value="student">Student</option>
+                <option ng-selected="jobSeekerCV.candidate_type[0] == 'mothers'" value="mothers">Mothers</option>
+                <option ng-selected="jobSeekerCV.candidate_type[0] == 'masters'" value="masters">Masters</option>
+                <option ng-selected="jobSeekerCV.candidate_type[0] == 'pensioners'" value="pensioners">Pensioners
+                </option>
+                <option ng-selected="jobSeekerCV.candidate_type[0] == 'graduate'" value="graduate">Graduate</option>
+            </select>
+
+
+                <label>Degree:</label>
+                <select name="degree_name" class="form-control degree_name" required>
+                    <option value=""></option>
+                    <option ng-selected="jobSeekerCV.academy['degree_name'] == 'software engineering'"
+                            value="software engineering">Software Engineering
+                    </option>
+                    <option ng-selected="jobSeekerCV.academy['degree_name'] == 'Industrial Engineering and Management'"
+                            value="Industrial Engineering and Management">Industrial Engineering and Management
+                    </option>
+                    <option ng-selected="jobSeekerCV.academy['degree_name'] == 'Electrical Engineering'"
+                            value="Electrical Engineering">Electrical Engineering
+                    </option>
+                    <option ng-selected="jobSeekerCV.academy['degree_name'] == 'Mechanical Engineering'"
+                            value="Mechanical Engineering">Mechanical Engineering
+                    </option>
+                </select>
+
+
+                <label>Type:</label>
+                <select name="degree_type" class="form-control degree_type" required>
+                    <option value=""></option>
+                    <option ng-selected="jobSeekerCV.academy['degree_type'][0] == 'bsc'" value="bsc">B.S. (Bachelor
+                        of
+                        Science)
+                    </option>
+                    <option ng-selected="jobSeekerCV.academy['degree_type'][0] == 'msc'" value="msc">M.S. (Master of
+                        Science)
+                    </option>
+                    <option ng-selected="jobSeekerCV.academy['degree_type'][0] == 'mres'" value="mres">M.Res. (Master
+                        of Research)
+                    </option>
+                </select>
+
+
+                <div class="form-group">
+                    <label>Academy:</label>
+
+
+                    <div class="btn-group jobSeekerCVAcademy" required data-toggle="buttons">
+                        <label class="btn btn-default"
+                               ng-class="{active:jobSeekerCV.academy['academy_type'][0] == 'university'}">University
+                            <input type="radio" name="options" id="option2" value="university"
+                                   ng-checked="jobSeekerCV.academy['academy_type'][0] == 'university'">
+                            <span class="glyphicon glyphicon-ok"></span>
+                        </label>
+
+                        <label class="btn btn-default"
+                               ng-class="{active:jobSeekerCV.academy['academy_type'][0] == 'college'}">College
+                            <input type="radio" name="options" id="option1" value="college"
+                                   ng-checked="jobSeekerCV.academy['academy_type'][0] == 'college'">
+                            <span class="glyphicon glyphicon-ok"></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Graduate:</label>
+
+                    <div class="btn-group" data-toggle="buttons">
+                        <label class="btn btn-default"
+                               ng-class="{active:jobSeekerCV.personal_properties['degree_graduation_with_honors'] == true}">Graduate
+                            with honors
+                            <input type="checkbox" id="honorsCB"
+                                   ng-checked="jobSeekerCV.personal_properties['degree_graduation_with_honors'] == true">
+                            <span class="glyphicon glyphicon-ok"></span>
+                        </label>
+
+
+                        <label class="btn btn-default"
+                               ng-class="{active:jobSeekerCV.personal_properties['psychometric_above_680'] == true}">SAT
+                            score above 680
+                            <input type="checkbox" id="scoreCB"
+                                   ng-checked="jobSeekerCV.personal_properties['psychometric_above_680'] == true">
+                            <span class="glyphicon glyphicon-ok"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Army:</label>
+
+                    <div class="btn-group" data-toggle="buttons">
+                        <label class="btn btn-default"
+                               ng-class="{active:jobSeekerCV.personal_properties['full_army_service'] == true}">Full
+                            military service
+                            <input type="checkbox"  id="armyCB"
+                                   ng-checked="jobSeekerCV.personal_properties['full_army_service'] == true">
+                            <span class="glyphicon glyphicon-ok"></span>
+                        </label>
+
+                        <label class="btn btn-default"
+                               ng-class="{active:jobSeekerCV.personal_properties['officer_in_the_military'] == true}">Officer in the
+                            army
+                            <input type="checkbox"  id="officerCB"
+                                   ng-checked="jobSeekerCV.personal_properties['officer_in_the_military'] == true">
+                            <span class="glyphicon glyphicon-ok"></span>
+                        </label>
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>High School:</label>
+
+                    <div class="btn-group" data-toggle="buttons">
+                        <label class="btn btn-default"
+                               ng-class="{active:jobSeekerCV.personal_properties['high_school_graduation_with_honors'] == true}">High
+                            School graduate
+                            with honors
+                            <input type="checkbox" id="graduateCB"
+                                   ng-checked="jobSeekerCV.personal_properties['high_school_graduation_with_honors'] == true">
+                            <span class="glyphicon glyphicon-ok"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>General:</label>
+
+                    <div class="btn-group" data-toggle="buttons">
+                        <label class="btn btn-default"
+                               ng-class="{active:jobSeekerCV.personal_properties['above_two_years_experience'] == true}">2+
+                            experience in the field of study
+                            <input type="checkbox" id="experienceCB"
+                                   ng-checked="jobSeekerCV.personal_properties['above_two_years_experience'] == true">
+                            <span class="glyphicon glyphicon-ok"></span>
+                        </label>
+
+                        <label class="btn btn-default"
+                               ng-class="{active:jobSeekerCV.personal_properties['multilingual'] == true}">Speak
+                            foreign languages
+                            <input type="checkbox"   id="foreignCB" ng-checked="jobSeekerCV.personal_properties['multilingual'] == true">
+                            <span class="glyphicon glyphicon-ok"></span>
+                        </label>
+                        <label class="btn btn-default"
+                               ng-class="{active:jobSeekerCV.personal_properties['volunteering'] == true}">Society
+                            volunteering
+                            <input type="checkbox"   id="volunteeringCB" ng-checked="jobSeekerCV.personal_properties['volunteering'] == true">
+                            <span class="glyphicon glyphicon-ok"></span>
+                        </label>
+
+                        <label class="btn btn-default"
+                               ng-class="{active:jobSeekerCV.personal_properties['youth_movements'] == true}">Past
+                            member of the Youth Movement
+                            <input type="checkbox"  id="YouthCB"
+                                   ng-checked="jobSeekerCV.personal_properties['youth_movements'] == true">
+                            <span class="glyphicon glyphicon-ok"></span>
+                        </label>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label>Scope of position:</label>
+
+                    <div class="btn-group jobSeekerCVScopeOfPosition" data-toggle="buttons" name="scope_of_position"
+                         required>
+                        <label class="btn btn-default" value="full"
+                               ng-class="{active:jobSeekerCV.scope_of_position[0] == 'full' || jobSeekerCV.scope_of_position[1] == 'full' || jobSeekerCV.scope_of_position[2] == 'full'}">Full
+                            Time
+                            <input type="checkbox" value="full"
+                                   ng-checked="jobSeekerCV.scope_of_position[0] == 'full' || jobSeekerCV.scope_of_position[1] == 'full' || jobSeekerCV.scope_of_position[2] == 'full'">
+                            <span class="glyphicon glyphicon-ok"></span>
+                        </label>
+
+                        <label class="btn btn-default" value="part"
+                               ng-class="{active:jobSeekerCV.scope_of_position[0] == 'part'  || jobSeekerCV.scope_of_position[1] == 'part' || jobSeekerCV.scope_of_position[2] == 'part'}">Part
+                            Time
+                            <input type="checkbox" value="part"
+                                   ng-checked="jobSeekerCV.scope_of_position[0] == 'part' || jobSeekerCV.scope_of_position[1] == 'part' || jobSeekerCV.scope_of_position[2] == 'part'">
+                            <span class="glyphicon glyphicon-ok"></span>
+                        </label>
+                        <label class="btn btn-default" value="hours"
+                               ng-class="{active:jobSeekerCV.scope_of_position[0] == 'hours'  || jobSeekerCV.scope_of_position[1] == 'hours' || jobSeekerCV.scope_of_position[2] == 'hours'}">By
+                            Hours
+                            <input type="checkbox" value="hours"
+                                   ng-checked="jobSeekerCV.scope_of_position[0] == 'hours' || jobSeekerCV.scope_of_position[1] == 'hours' || jobSeekerCV.scope_of_position[2] == 'hours'">
+                            <span class="glyphicon glyphicon-ok"></span>
+                        </label>
+                    </div>
+                </div>
+
+
+                <!-- TIMELINE -->
+                <section class="resumeYears">
+
+                    <div class="container">
+                        <div class="borderTimelineTitle1">
+                            <h3>Education</h3>
+                        </div>
+                        <div class="borderTimelineTitle2">
+                            <h3>Experience</h3>
+                        </div>
+                        <div class="page-header">
+                            <h1 id="timeline">Timeline</h1>
+                        </div>
+                        <!-- section of year -->
+                        <ul class="timeline">
+
+
+                            <li ng-repeat="experience in jobSeekerCV.original_text.history_timeline" id="cvLi{{$index}}"
+                                ng-class="{'timeline-inverted' : experience['type'] == 'experience'}">
+                                <div class="timeline-badge" ng-click="addEducation(experience.type)">
+                                    <i class="fa fa-plus"></i>
+                                </div>
+                                <div class="timeline-panel">
+
+
+                                    <!-- onem new divvvvvvvvvvvv -->
+
+                                    <!-- <div class="borderBoxInTimeline"></div> -->
+                                    <div class="timeline-heading">
+
+                                        <h2 class='timelineTitle' ng-if="experience['type'] == 'experience'">Experience</h2>
+                                        <h2 class='timelineTitle' ng-if="experience['type'] == 'education'">Education</h2>
+                                        <i class="fa fa-times fa-2x removeContentCV" aria-hidden="true"
+                                           ng-click="removeContentCV($index)"></i>
+                                        <label class="yearsProfile">From
+                                            <select ng-model="selectedFrom" ng-change="selectFromYear(selectedFrom)"
+                                                    class="form-control yearsProfile">
+                                                <option> </option>
+                                                <option value="2004" ng-selected="experience['start_year'] == '2004'">
+                                                    2004
+                                                </option>
+                                                <option value="2005" ng-selected="experience['start_year'] == '2005'">
+                                                    2005
+                                                </option>
+                                                <option value="2006" ng-selected="experience['start_year'] == '2006'">
+                                                    2006
+                                                </option>
+                                                <option value="2007" ng-selected="experience['start_year'] == '2007'">
+                                                    2007
+                                                </option>
+                                                <option value="2008" ng-selected="experience['start_year'] == '2008'">
+                                                    2008
+                                                </option>
+                                                <option value="2009" ng-selected="experience['start_year'] == '2009'">
+                                                    2009
+                                                </option>
+                                                <option value="2010" ng-selected="experience['start_year'] == '2010'">
+                                                    2010
+                                                </option>
+                                                <option value="2011" ng-selected="experience['start_year'] == '2011'">
+                                                    2011
+                                                </option>
+                                                <option value="2012" ng-selected="experience['start_year'] == '2012'">
+                                                    2012
+                                                </option>
+                                                <option value="2013" ng-selected="experience['start_year'] == '2013'">
+                                                    2013
+                                                </option>
+                                                <option value="2014" ng-selected="experience['start_year'] == '2014'">
+                                                    2014
+                                                </option>
+                                                <option value="2015" ng-selected="experience['start_year'] == '2015'">
+                                                    2015
+                                                </option>
+                                                <option value="2016" ng-selected="experience['start_year'] == '2016'">
+                                                    2016
+                                                </option>
+                                            </select>
+                                        </label>
+                                        <label class="yearsProfile">To
+                                            <select ng-model="selectedTo" ng-change="selectToYear(selectedTo)"
+                                                    class="form-control yearsProfile">
+                                                <option> </option>
+                                                <option value="2004" ng-selected="experience['end_year'] == '2004'"
+                                                        ng-show="selectFrom == 2004">
+                                                    2004
+                                                </option>
+                                                <option value="2005" ng-selected="experience['end_year'] == '2005'"
+                                                        ng-show="selectFrom <= 2004">
+                                                    2005
+                                                </option>
+                                                <option value="2006" ng-selected="experience['end_year'] == '2006'"
+                                                        ng-show="selectFrom <= 2005">
+                                                    2006
+                                                </option>
+                                                <option value="2007" ng-selected="experience['end_year'] == '2007'"
+                                                        ng-show="selectFrom <= 2006">
+                                                    2007
+                                                </option>
+                                                <option value="2008" ng-selected="experience['end_year'] == '2008'"
+                                                        ng-show="selectFrom <= 2007">
+                                                    2008
+                                                </option>
+                                                <option value="2009" ng-selected="experience['end_year'] == '2009'"
+                                                        ng-show="selectFrom <= 2008">
+                                                    2009
+                                                </option>
+                                                <option value="2010" ng-selected="experience['end_year'] == '2010'"
+                                                        ng-show="selectFrom <= 2009">
+                                                    2010
+                                                </option>
+                                                <option value="2011" ng-selected="experience['end_year'] == '2011'"
+                                                        ng-show="selectFrom <= 2010">
+                                                    2011
+                                                </option>
+                                                <option value="2012" ng-selected="experience['end_year'] == '2012'"
+                                                        ng-show="selectFrom <= 2011">
+                                                    2012
+                                                </option>
+                                                <option value="2013" ng-selected="experience['end_year'] == '2013'"
+                                                        ng-show="selectFrom <= 2012">
+                                                    2013
+                                                </option>
+                                                <option value="2014" ng-selected="experience['end_year'] == '2014'"
+                                                        ng-show="selectFrom <= 2013">
+                                                    2014
+                                                </option>
+                                                <option value="2015" ng-selected="experience['end_year'] == '2015'"
+                                                        ng-show="selectFrom <= 2014">
+                                                    2015
+                                                </option>
+                                                <option value="2016" ng-selected="experience['end_year'] == '2016'"
+                                                        ng-show="selectFrom <= 2015">
+                                                    2016
+                                                </option>
+                                            </select>
+                                        </label>
+                                    </div>
+                                    <div class="timeline-body">
+                                        <p>
+
+                                        <div class="form-group">
+                                            <label for="content">Content:</label>
+                                            <textarea class="form-control profileExpEdu" rows="3" name="content" id="content"
+                                                      ng-model="experience.text" ng-change="changeContent(content)"
+                                                      required>{{experience.text}}</textarea>
+                                        </div>
+
+                                        </p>
+                                    </div>
+
+
+                                    <!-- close new div -->
+
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="timeline-pluss" ng-click="addEducation('experience')">
+                        <i class="fa fa-plus"></i>
+                    </div>
+                    <div class="timeline-pluss-exp" ng-click="addEducation('education')">
+                        <i class="fa fa-plus"></i>
+                    </div>
+                </section>
+                <!-- TIMELINE END -->
+
+
+                <i class="fa fa-refresh fa-spin fa-3x fa-fw margin-bottom"></i>
+
+                <div class="parseB">
+                    <img class="Garrow" src="images/Garrow.png">
+                    <input type="button" class="btn btn-warning parseExperienceButton parseButton"
+                           ng-click="parseMyExperience()"
+                           required
+                           value="Parse my Experience"/>
+                </div>
+<p class="parserAfterText">CV Matcher built your CV and parse your experience and this is the results that we found:</p>
+                <label class="parserExperienceLanguage">Language</label>
+                <label class="parserExperienceYearsLabel">Years</label>
+                <section class="parseExperience"></section>
+                <input type="button" class="btn btn-warning parseExperiencePlusButton hidden"
+                       ng-click="addMoreExperience()" value="+">
+
+
+                <section ng-click="cvPreview()" value="CV Preview" class="btn btn-default cvPreview">
+                    <img class="Garrow" src="images/Garrow.png">
+                    <span>CV Preview</span>
+                </section>
+
+                <button class="sendButtonP" type="submit" id="submitAfterParse" class="btn btn-default">
+                    <img class="Garrow" src="images/Garrow.png">
+                    <span>Save</span>
+                </button>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<section class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">{{status}}</h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" ng-click="exitStatus()" data-dismiss="modal">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Modal -->
+<section class="modal fade" id="previewCV" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">{{status}}</h4>
+            </div>
+            <div class="modal-body">
+                <div ng-include="'job_seeker/preview_cv.html'"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+</section>

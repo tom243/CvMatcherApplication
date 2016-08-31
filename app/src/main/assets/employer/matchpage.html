@@ -1,0 +1,63 @@
+<style>
+    .jobDetailsLS{
+        margin:10px 0px;
+    }
+    .jobDetailsLS > h3{
+        text-align: left;
+        color: #fff;
+    }
+</style>
+<div class="searchJobsImgCover1"></div>
+<i class="fa fa-spinner fa-pulse fa-5x"></i>
+<div class="matchpageWrapper" ng-init="init();">
+    <h3 class="navigation"></h3>
+    <header>
+        <h2 class="matchTitle">Match Page</h2>
+    </header>
+
+    <div class="jobDetailsLS"></div>
+    <div class="matchResult">
+        <h2 class="greate"><i class="fa  fa-2x"></i></h2>
+
+        <h4></h4>
+        <section id="user-container">
+            <h5></h5>
+        </section>
+
+        <h3 class="skillsTitleM">Skills</h3>
+
+        <div class="formula-result">
+
+        </div>
+
+        <div class="requirements-skills-bar">
+
+        </div>
+
+    </div>
+
+    <a href="#/profile" ng-click="fixCV()" class="btn btn-default fixCV">
+        <img class="Garrow" src="images/Garrow.png">
+        Fix CV</a>
+    <a href="" ng-if="sendcv" class="btn btn-default sendCV" ng-click="sendCV()">
+        <img class="Garrow" src="images/Garrow.png">
+        Send CV</a>
+</div>
+
+
+<!-- Modal -->
+<section class="modal fade" id="sendCVstatus" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">{{status}}</h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="exitStatus()">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+</section>

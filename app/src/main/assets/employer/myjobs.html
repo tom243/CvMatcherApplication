@@ -1,0 +1,95 @@
+<script>
+
+</script>
+<div class="myJobsImgCover"></div>
+<div class="myjobsWrapper" ng-init="init();getMainJson();sort('-date');">
+    <h3 class="navigation"></h3>
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+    <div class="myJobsBox">
+        <header>
+            <h2>{{pageTitle}}</h2>
+        </header>
+        <form >
+            <input id='jobTitles' type="text" placeholder="Find Job" ng-model="searchText" highlighted data-search="searchText"
+                   class="form-control">
+
+        </form>
+        <button type="button" class="btn btn-default"
+                ng-click="sort('-compatibility_level')">Sort By Compatibility
+            <img class="Garrow" src="images/Garrow.png">
+        </button>
+        <button type="button" class="btn btn-default" ng-click="sort('-date')">Sort
+            By Date
+            <img class="Garrow" src="images/Garrow.png">
+        </button>
+    </div>
+    <ul class="nav engineering" ng-init="tab=0">
+        <li class="selected" ng-class="{active:tab == 0}"><a ng-click="tab = 0">Software
+            </a></li>
+        <li class="disabled"><a>
+            Managment</a></li>
+        <li class="disabled"><a>Electrial
+            </a></li>
+        <li class="disabled"><a>Mechanical
+            </a></li>
+    </ul>
+    <div class="tabsWrapper">
+        <div ng-show="tab == 0" class="fade in active">
+            <!-- jobs sections -->
+            <section
+                    ng-repeat="job in myjobs | filter:searchText | orderBy:sortby">
+                <div class="jobs animated fadeInUp">
+                    <div>
+                        <a href="" ng-if="jobPage == 'archive'" ng-click="revive(job._id)"><i
+                                class="fa fa-recycle fa-2x"></i></a>
+                        <a href="" ng-if="jobPage == 'myJobs'" ng-click="deleteJob(job._id)"><i
+                                class="fa fa-trash fa-2x"></i></a>
+
+                        <a ng-if="jobPage == 'myJobs' && job.cvs.length == 0" href="#/job/{{job._id}}"><i
+                                class="fa fa-pencil fa-2x pencilMyJobs"></i></a>
+
+                        <a ng-if="job.cvs.length > 0 && jobPage != 'archive'" href="#/candidates/{{job._id}}"
+                           ng-click="saveJobTitle(job.original_text['title']);"><img alt="logo of cv matcher"
+                                                                                     src="./images/logo.png"></a>
+
+                        <a ng-if="job.cvs.length > 0 && jobPage == 'archive'" href="#/archive/candidates/{{job._id}}"
+                           ng-click="saveJobTitle(job.original_text['title']);"><img alt="logo of cv matcher"
+                                                                                     src="./images/logo.png"></a>
+
+                        <h3 class="title" ng-model="searchText.original_text['title']"
+                            ng-bind-html="job.original_text['title'] | highlight:searchText">
+                            {{job.original_text["title"]}}</h3>
+
+                    </div>
+                    <div data-toggle="collapse" data-target="#collepse-{{$index}}">
+                        <p class="jobTitles">Address: </p>
+                        <h5 ng-repeat="j in job.locations track by $index" ng-bind-html="($index+1) +'. ' + j | highlight:searchText"></h5>
+
+
+                        <h5 ng-model="searchText.date" ng-bind-html="job.date | highlight:searchText">Date: {{job.date}}</h5>
+                        <article id="collepse-{{$index}}" class="collapse">
+                            <h5 class="jobTitles">Requirements:</h5>
+
+                        <p ng-model="searchText.original_text['requirements'].split('|||')[0]"
+                           ng-bind-html="job.original_text['requirements'].split('|||')[0] | highlight:searchText">
+                            {{job.original_text["requirements"].split("|||")[0]}}
+                        </p>
+                            <span class="jobTitles">Advanteges: </span>
+
+                        <p>{{job.original_text["requirements"].split("|||")[1]}}</p>
+
+                            <span class="jobTitles">Inforamtion: </span>{{job.original_text["description"]}}
+                        </article>
+
+                        <span class="compabilityM">Compatibility</span>
+                        <section circle id="{{ 'circle-container-' + $index }}"
+                                 data-compability="{{job.compatibility_level}}">
+                            <h5>{{job.compatibility_level.toFixed(0)}}%</h5>
+                        </section>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    </div>
+</div>

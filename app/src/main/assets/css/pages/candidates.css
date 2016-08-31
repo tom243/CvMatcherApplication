@@ -1,0 +1,166 @@
+.candidatesWrapper .tabsWrapper > div > h3 {
+    text-align: left;
+    position: relative;
+    /* left: 0; */
+    font-size: 26px;
+    color: #fff;
+    margin-bottom: 44px;
+}
+
+.candidatesWrapper .btn-default:hover {
+    color: #fff;
+    background-color: transparent;
+    border-color: transparent;
+    opacity: 0.6;
+}
+
+.candidatesWrapper h2 {
+    color: #fff;
+    margin-top: 20px;
+    margin-left: -2px;
+    font-size: 40px;
+    color: white;
+    font-family: almoni-dl-aaa-regular;
+}
+
+.candidatesWrapper .engineering {
+    margin-top: 0px;
+}
+
+.candidatesWrapper button {
+    margin-top: 4px;
+    padding-bottom: 20px;
+    background-color: transparent;
+    border: 0;
+    font-size: 16px;
+    font-family: almoni-dl-aaa-regular;
+    color: white;
+    float: left;
+    margin-left: -1%;
+}
+.candidatesWrapper button:active,.candidatesWrapper button:active:hover,.candidatesWrapper button:focus{outline:none; background-color:transparent; color:#fff;}
+
+.candidatesWrapper form {
+    margin-top: 13px;
+    width: 70%;
+    padding-top: -21px;
+}
+
+.candidatesImgCover {
+    background: url("../../images/jobseekerCover.png") right bottom no-repeat;
+    height: 120%;
+    width: 651px;
+    position: fixed;
+    top: 0px;
+    right: 0;
+}
+
+.candidates h3 {
+    width: 50%;
+    font-size: 190%;
+}
+
+.candidates {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    width: 100%;
+    text-align: left;
+    float: left;
+    text-align: left;
+    font-family: almoni-dl-aaa-regular;
+    color: white;
+}
+
+.candidatesTabs li  > a{
+    width: 100%;
+    float: left;
+}
+.candidatesTabs li:hover{
+    border-top: 1px solid #33B778;
+    border-bottom: 1px solid #33B778;
+    background-color: transparent;
+}
+
+.candidates > div:nth-child(1) {
+    position: absolute;
+    right: 18px;
+    top: 18px;
+}
+
+.candidates > div:nth-child(1) a {
+    float: right;
+    margin-left: 21px;
+    width: 25px;
+    font-size: 11px;
+}
+
+.candidates > div:nth-child(1) h3 {
+    font-size: 18px;
+}
+
+.candidates > div:nth-child(2) {
+    float: left;
+    width: 100%;
+    height: 112px;
+    margin-top: 0px;
+    margin-bottom: 40px;
+    padding-left: 16%;
+    border-bottom: 1px solid #fff;
+}
+
+.candidates > div:nth-child(2) a {
+    text-decoration: none;
+    float: left;
+    width: 100%;
+    margin-left: 2%;
+    /*margin-top: 5%;*/
+}
+
+.candidates > div:nth-child(2) section {
+    position: absolute;
+    width: 75px;
+    top: 0px;
+    left: 0px;
+}
+
+.candidates > div:nth-child(2) section h5 {
+    position: absolute;
+    color: #fff;
+    z-index: 1;
+    left: 27%;
+    bottom: 24px;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.candidates > div:nth-child(2) span {
+    float: left;
+}
+
+.candidates h5 {
+    color: #606060;
+    font-weight: bold;
+    float: left;
+}
+
+.candidates p {
+    margin: 20px 0px;
+    color: #fff;
+    font-size: 18px;
+    text-align: left;
+}
+
+.candidates img {
+    width: 128%;
+    float: right;
+    margin-top: -14px;
+    /* margin-right: 10px; */
+}
+
+.candidates span {
+    float: right;
+}
+
+.candidates img:hover {
+    opacity: 0.6;
+}

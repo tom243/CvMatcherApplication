@@ -1,0 +1,146 @@
+<div class="searchJobsImgCover"></div>
+<div class="yourJobsWrapper" ng-init="init();getMainJson();sort('-date');">
+    <h3 class="navigation"></h3>
+
+    <div class="myJobsBox">
+        <header>
+            <h2>{{title}}</h2>
+        </header>
+
+        <form method="get">
+            <input type="text"  placeholder="Find Job" ng-model="searchText"
+                   class="form-control searchText">
+        </form>
+        <button type="button" class="btn btn-default"
+                ng-click="sort('job.compatibility_level')">Sort By Compatibility
+            <img class="Garrow" src="images/Garrow.png">
+        </button>
+        <button type="button" class="btn btn-default" ng-click="sort('-job.date')">Sort
+            By Date
+            <img class="Garrow" src="images/Garrow.png">
+        </button>
+    </div>
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+
+    <div class="jobsList">
+        <ul>
+            <li class="jobListLi  animated fadeInUp" ng-model="jobSJ"
+                ng-repeat="jobSJ in jobSeekerJobs | filter:searchText | orderBy:sortby">
+
+                <i class="fa fa-3x fav" id="fav{{$index}}"
+                   ng-class='{"fa-heart-o" : jobSJ.favorite == false, "fa-heart": jobSJ.favorite == true}'
+                   ng-show="page!='deleted'"
+                   ng-click="favoriteJob(jobSJ._id,$index)"></i>
+
+                <i class="fa fa-trash trashMyJobs" aria-hidden="true" ng-show="page=='myjobs' || page=='favorites'"
+                   ng-click="removeReviveJob(jobSJ._id,false)"></i>
+                <i class="fa fa-trash trashMyJobs" aria-hidden="true" ng-show="page=='deleted'"
+                   ng-if="jobSJ.job.archive == false"
+                   ng-click="removeReviveJob(jobSJ._id,true)"></i>
+
+
+                <div data-toggle="collapse" data-target="#collepse-{{$index}}" ng-click="collepse($index)">
+                    <input type="hidden" class="classForNotifications" value="{{jobSJ.job._id}}"/>
+
+
+                    <a
+                            href="">
+                        <div>
+                            <img class="companyLogoN"
+                                 ng-src="{{jobSJ.job.user.company.logo}}">
+                            <article>
+
+                                <p class="titleYour" ng-model="searchText.name"
+                                   ng-bind-html="jobSJ.job.original_text['title'] | highlight:searchText">
+                                    {{jobSJ.job.original_text["title"]}}</p>
+
+                                <p class="titleYour" ng-model="searchText.job_name"
+                                   ng-bind-html="jobSJ.job.academy['degree_name'] | highlight:searchText">
+                                    {{jobSJ.job.academy["degree_name"]}}</p>
+
+
+                                <p class="titleYour"> {{jobSJ.job.date}}</p>
+
+
+                                <p>Address: </p>
+                                <h5 class="titleYour" ng-repeat="j in jobSJ.job.locations  track by $index"
+                                    ng-bind-html="($index+1) +'. ' + j | highlight:searchText"></h5>
+
+
+                                <img class="arrow-down" src="images/arrow-down.png">
+                            </article>
+                            <img class="readUnread" ng-if="jobSJ.cv.status.current_status == 'seen' || descriptionFromMessage == 'seen'"
+                                 ng-src="images/readV.png"/>
+                            <img class="readUnread" ng-if="jobSJ.cv.status.current_status == 'unread'"
+                                 ng-src="images/unreadV.png"/>
+                            <!--<img class="readUnread" ng-src="{{jobSJ.cv.status.current_status == 'seen' ? 'images/readV.png' : 'images/unreadV.png'}}"/>
+                            <img class="readUnread" ng-src="{{jobSJ.cv.status.current_status == 'seen' ? 'images/readV.png' : 'images/unreadV.png'}}"/>
+                                -->
+                <span class="rating " ng-if="jobSJ.cv.status.current_status == 'liked'">
+                    <input type="radio" class="rating-input" id="rating-5" name="rating">
+                    <label for="rating-5" class="rating-star" ng-if="jobSJ.cv.status.status_id.rate.stars<5 || starsFromMessage < 5"
+                           ng-style="{'background-position':'0 -16px'}"></label>
+                    <label for="rating-5" class="rating-star" ng-if="jobSJ.cv.status.status_id.rate.stars==5 || starsFromMessage == 5"
+                           ng-style="{'background-position':'0 0'}"></label>
+                    <input type="radio" class="rating-input" id="rating-4" name="rating">
+                    <label for="rating-4" class="rating-star" ng-if="jobSJ.cv.status.status_id.rate.stars<4 || starsFromMessage < 4"
+                           ng-style="{'background-position':'0 -16px'}"></label>
+                    <label for="rating-4" class="rating-star" ng-if="jobSJ.cv.status.status_id.rate.stars>=4 || starsFromMessage >= 4"
+                           ng-style="{'background-position':'0 0'}"></label>
+                    <input type="radio" class="rating-input" id="rating-3" name="rating">
+                    <label for="rating-3" class="rating-star" ng-if="jobSJ.cv.status.status_id.rate.stars<3 || starsFromMessage < 3"
+                           ng-style="{'background-position':'0 -16px'}"></label>
+                    <label for="rating-3" class="rating-star" ng-if="jobSJ.cv.status.status_id.rate.stars>=3 || starsFromMessage >= 3"
+                           ng-style="{'background-position':'0 0'}"></label>
+                    <input type="radio" class="rating-input" id="rating-2" name="rating">
+                    <label for="rating-2" class="rating-star" ng-if="jobSJ.cv.status.status_id.rate.stars<2 || starsFromMessage < 2"
+                           ng-style="{'background-position':'0 -16px'}"></label>
+                    <label for="rating-2" class="rating-star" ng-if="jobSJ.cv.status.status_id.rate.stars>=2 || starsFromMessage >= 2"
+                           ng-style="{'background-position':'0 0'}"></label>
+                    <input type="radio" class="rating-input" id="rating-1" name="rating">
+                    <label for="rating-1" class="rating-star" ng-if="jobSJ.cv.status.status_id.rate.stars<1 || starsFromMessage < 1"
+                           ng-style="{'background-position':'0 -16px'}"></label>
+                    <label for="rating-1" class="rating-star" ng-if="jobSJ.cv.status.status_id.rate.stars>=1 || starsFromMessage >= 1"
+                           ng-style="{'background-position':'0 0'}"></label>
+                </span>
+                        </div>
+                        <p  class="unlikeReason " ng-if="jobSJ.cv.status.current_status == 'unliked' || descriptionFromMessage == 'unliked'" >
+                            Unlike Reason: {{jobSJ.cv.status.status_id.rate.description}}
+                        </p>
+
+                        <p ng-if="jobSJ.cv.hired == true && jobSJ.job.archive == false">
+                            <img class="hired" src="images/hired.png"/>
+                        </p>
+
+                        <p ng-if="jobSJ.job.archive == true">
+                            <img class="hired" src="images/expired.png"/>
+                        </p>
+
+
+                        <section circle id="{{ 'circle-container-' + $index }}"
+                                 data-compability="{{jobSJ.job.compatibility_level}}">
+                            <h5>{{jobSJ.job.compatibility_level}}%</h5>
+                        </section>
+                        <h5 class="compatibilityText">Compatibility</h5>
+
+                        <article id="collepse-{{$index}}" class="collapse LTitle">
+                            <p><span>Description:</span> {{jobSJ.job["original_text"].description}}</p>
+
+                            <div class="skills">
+                                <p><span>Requirements:</span> {{jobSJ.job.original_text["requirements"].split("|||")[0]}}</p>
+
+                                <p>{{jobSJ.job.original_text["requirements"].split("|||")[1]}}</p>
+                            </div>
+
+                            <img class="arrow-up" src="images/arrow-up.png">
+                            <section>
+
+                            </section>
+                        </article>
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+</div>

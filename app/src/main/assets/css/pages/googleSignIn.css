@@ -1,0 +1,137 @@
+
+.seeker {
+    margin-top: 34px;
+}
+
+.employer {
+    margin-top: 44px;
+}
+
+.googleSignInImg {
+    background: url("../../images/jobseekerCover.png") right bottom no-repeat;
+    height: 120%;
+    width: 651px;
+    position: fixed;
+    top: 0px;
+    right: 0;
+}
+
+.googleSignInBox > div > a:hover {
+
+    opacity: 0.5;
+}
+
+.googleSignInWrapper {
+
+    width: 100%;
+    height: 100%;
+}
+/*
+.googleSignInImg {
+    width: 100%;
+}*/
+
+.googleSignInBox {
+    width: 50%;
+    margin: 0 auto;
+    position: relative;
+    top: 94px;
+}
+
+.googleSignInWrapper header {
+
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-bottom: 20px;
+}
+
+.googleSignInWrapper h3 {
+    opacity: 1;
+    font-size: 260%;
+    font-family: almoni-dl-aaa-regular;
+}
+
+.googleSignInWrapper h4 {
+    padding-top: 20px;
+    font-size: 112%;
+    font-family: almoni-dl-aaa-regular;
+}
+
+.googleSignInWrapper h3, .googleSignInWrapper h4 {
+    color: white;
+    text-align: center;
+}
+
+.googleSignInBox img {
+    opacity: 1;
+    margin-top: 34px;
+    margin: 0 auto;
+}
+
+.googleSignInBox > div > a {
+    width: 50%;
+    float: left;
+}
+
+.googleSignInWrapper > div > a:hover, .googleSignInWrapper > div > a:focus {
+    opacity: 1;
+    text-decoration: none;
+}
+
+.googleSignInWrapper > div > a > h3 {
+    margin-left: 5%;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.googleSignInWrapper > div:nth-child(2) {
+
+}
+
+.googleSignInWrapper > div:nth-child(4) {
+    width: 100%;
+    margin-top: 5%;
+    float: left;
+}
+
+.googleSignInWrapper > div > a > img {
+    margin-left: 5%;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.abcRioButton {
+    margin: 0 auto;
+}
+
+.popover-content a {
+    width: 100%;
+    color: #231f20;
+    display: inline-block;
+    text-align: center;
+}
+
+/*.geocomplete {
+    width: 50% !important;
+}*/
+
+.geocomplete input {
+    margin-bottom: 10px;
+    float: left;
+    width: 70%;
+}
+
+.geocomplete > div {
+    float: left;
+    width: 100%;
+}
+
+.geocomplete .fa-times {
+    cursor: pointer;
+    /* float: right; */
+    font-size: 22px;
+    color: #fff;
+    /* font-weight: 300; */
+    margin-left: 20px;
+    margin-top: 8px;
+}

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.MainActivity">
+
+    <RelativeLayout
+        android:id="@+id/employerNativeHeader"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#000000"
+        android:focusable="false"
+        android:nestedScrollingEnabled="true"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:importantForAccessibility="noHideDescendants">
+
+        <ImageView
+            android:id="@+id/slidePanelImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:adjustViewBounds="true"
+            android:paddingBottom="5dp"
+            android:paddingLeft="5dp"
+            android:paddingTop="5dp"
+            android:src="@drawable/hamburger"/>
+
+        <ImageView
+            android:id="@+id/employerLogoImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:adjustViewBounds="true"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:src="@drawable/cv_matcher_logo"
+            android:paddingRight="5dp" />
+
+        <TextView
+            android:background="@drawable/customborder"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_alignBottom="@+id/slidePanelImageView"
+            android:layout_alignParentStart="false"
+            android:layout_alignParentEnd="false"
+            android:layout_alignParentBottom="true"
+            android:shadowColor="#000000" />
+    </RelativeLayout>
+
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/mainDrawerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/employerNativeHeader">
+
+        <RelativeLayout
+            android:id="@+id/mainContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="bottom"
+            android:measureWithLargestChild="false"
+            android:orientation="horizontal"
+            android:weightSum="1"
+            android:background="@color/lightGrayBackground">
+
+            <WebView
+                android:id="@+id/mainWebView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/lightGrayBackground"
+                android:layout_alignParentTop="true"
+                android:visibility="visible"/>
+            <ProgressBar
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"
+                android:id="@+id/mainProgressBar"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:minHeight="200px"
+                android:minWidth="200px"/>
+
+        </RelativeLayout>
+
+        <ListView
+            android:id="@+id/mainDrawer"
+            android:layout_width="240dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="left"
+            android:background="#ffffff"
+            android:choiceMode="singleChoice"
+            android:headerDividersEnabled="false"
+            android:scrollingCache="false"
+            android:divider="@drawable/list_divider"
+            android:dividerHeight="1px"
+            android:textColor="#0075B5"/>
+    </android.support.v4.widget.DrawerLayout>
+
+</RelativeLayout>
+

@@ -1,0 +1,69 @@
+<!-- User Name -->
+<div class="borderUserDetailsBox">
+    <div class="userDetailsBox" ng-init="getUserJson()">
+
+        <h3>{{user.first_name}} {{user.last_name}} Resume</h3>
+        <h5>{{user.sector}}</h5>
+
+
+        <div>
+            <a >
+                <!-- <i class="fa fa-phone fa-2x"></i> -->
+                <h4>{{user.address}}</h4></a>
+        </div>
+        <div>
+            <a >
+                <!-- <i class="fa fa-phone fa-2x"></i> -->
+                <h4>{{user.phone_number}}</h4></a>
+        </div>
+        <div>
+            <a >
+                <!-- <i class="fa fa-envelope fa-2x"></i> -->
+                <h4>{{user.email}}</h4></a>
+        </div>
+        <div>
+            <a>
+                <!-- <i class="fa fa-linkedin-square fa-2x"></i> -->
+                <h4>{{user.linkdin}}</h4></a>
+        </div>
+
+    </div>
+</div>
+<!-- TIMELINE -->
+<section class="resumeYears">
+    <div class="borderTimelineTitle1">
+        <h3>Education</h3>
+    </div>
+    <div class="borderTimelineTitle2">
+        <h3>Experience</h3>
+    </div>
+    <div class="container">
+        <div class="page-header">
+            <h1 id="timeline">Timeline</h1>
+        </div>
+        <!-- section of year -->
+        <ul class="timelineForPreview">
+            <!-- section of year -->
+            <li ng-repeat="timeline in user_timeline"
+                ng-class="{'timeline-inverted': timeline['type'] == 'experience'}">
+                <div class="timeline-badge">
+                    <i class="fa fa-file-text-o"></i>
+                </div>
+                <div class="timeline-panel">
+                    <div class="timeline-heading">
+                        <p class="mobileTitle">{{timeline['type']}}</p>
+                        <p>
+                            <small class="text-muted">{{timeline['start_year']}} - {{timeline['end_year']}}
+                            </small>
+                        </p>
+                    </div>
+                    <div class="timeline-body">
+                        <p>{{timeline['text']}}</p>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <!-- TIMELINE END -->
+
+</section>

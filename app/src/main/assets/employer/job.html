@@ -1,0 +1,486 @@
+
+<div class="jobCover"></div>
+<div class="jobWrapper" ng-init="init()">
+    <h3 class="navigation"></h3>
+    <header>
+        <h2 class="jobTitle">Job</h2>
+    </header>
+    <i class="fa fa-spinner fa-pulse spin fa-5x"></i>
+
+    <form method="post" ng-submit="submitForm()">
+        <div class="animated fadeInDown jobEdit">
+            <div class="form-group">
+                <h6 class="requiredError"> *All the fields are required!</h6>
+
+                <label for="jobName">Job Name:</label> <input type="text"
+                                                              ng-model="jobDetails['original_text']['title']"
+                                                              placeholder="Please Type job name" id="jobName"
+                                                              class="form-control jobName" name="job_name"
+                                                              required
+                                                              value="{{jobDetails['original_text']['title']}}"/>
+            </div>
+            <div class="form-group geocomplete">
+                <label>Location:</label>
+
+                <div ng-repeat="location in jobDetails.locations track by $index"><input class="form-control" ng-model="location"
+                                                                                         id="geocomplete{{$index}}"
+                                                                                         required
+                                                                                         type="text"
+                                                                                         name="location" value="{{location}}"
+                                                                                         placeholder="Type in an address" size="90"
+                                                                                         autocomplete="on"/>
+                    <i ng-if="$index != 0" class="fa fa-times" aria-hidden="true" ng-click="deleteLocation($index)"></i>
+                </div>
+            </div>
+            <input type="button" class="btn btn-warning"
+                   ng-click="addAnotherLocation()" value="+ Add location"/>
+
+            <div class="form-group">
+                <label>Sector:</label>
+                <select name="sector" class="form-control sector" required>
+                    <option></option>
+                    <option ng-selected="jobDetails.sector == 'software engineering'" value="software engineering">
+                        Software
+                        Engineering
+                    </option>
+                    <option disabled>
+                        Industrial Engineering and
+                        Management
+                    </option>
+                    <option disabled>Electrical
+                        Engineering
+                    </option>
+                    <option disabled>Mechanical
+                        Engineering
+                    </option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label> Degree Name:</label>
+                <select name="degree_name" class="form-control degree_name" required>
+                    <option></option>
+                    <option ng-selected="jobDetails.academy['degree_name'] == 'software engineering'"
+                            value="software engineering">Software
+                        Engineering
+                    </option>
+                    <option ng-selected="jobDetails.academy['degree_name'] == 'Industrial Engineering and Management'"
+                            value="Industrial Engineering and Management">
+                        Industrial Engineering and
+                        Management
+                    </option>
+                    <option ng-selected="jobDetails.academy['degree_name'] == 'Electrical Engineering'"
+                            value="Electrical Engineering">Electrical
+                        Engineering
+                    </option>
+                    <option ng-selected="jobDetails.academy['degree_name'] == 'Mechanical Engineering'"
+                            value="Mechanical Engineering">Mechanical
+                        Engineering
+                    </option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Degree Type:</label>
+
+                <div class="btn-group degree_type" data-toggle="buttons" required>
+                    <label class="btn btn-default"
+                           ng-class="{active:jobDetails.academy['degree_type'][0] == 'bsc' || jobDetails.academy['degree_type'][1] == 'bsc' || jobDetails.academy['degree_type'][2] == 'bsc'}">B.S.
+                        (Bachelor
+                        of
+                        Science)
+                        <input type="checkbox" name="academyOptions"
+                               ng-checked="jobDetails.academy['degree_type'][0] == 'bsc' || jobDetails.academy['degree_type'][1] == 'bsc' || jobDetails.academy['degree_type'][2] == 'bsc'"
+                               value="bsc">
+                        <span class="glyphicon glyphicon-ok"></span>
+                    </label>
+                    <label class="btn btn-default"
+                           ng-class="{active:jobDetails.academy['degree_type'][0] == 'msc' || jobDetails.academy['degree_type'][1] == 'msc' || jobDetails.academy['degree_type'][2] == 'msc'}">M.S.
+                        (Master of
+                        Science)
+                        <input type="checkbox" name="academyOptions" value="msc"
+                               ng-checked="jobDetails.academy['degree_type'][0] == 'msc' || jobDetails.academy['degree_type'][1] == 'msc' || jobDetails.academy['degree_type'][2] == 'msc'">
+                        <span class="glyphicon glyphicon-ok"></span>
+                    </label>
+                    <label class="btn btn-default"
+                           ng-class="{active:jobDetails.academy['degree_type'][0] == 'mres' || jobDetails.academy['degree_type'][1] == 'mres' || jobDetails.academy['degree_type'][2] == 'mres'}">M.Res.
+                        (Master
+                        of Research)
+                        <input type="checkbox" name="academyOptions" value="mres"
+                               ng-checked="jobDetails.academy['degree_type'][0] == 'mres' || jobDetails.academy['degree_type'][1] == 'mres' || jobDetails.academy['degree_type'][2] == 'mres'">
+                        <span class="glyphicon glyphicon-ok"></span>
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Academy:</label>
+
+                <div class="btn-group academy" data-toggle="buttons" required>
+                    <label class="btn btn-default"
+                           ng-class="{active:jobDetails.academy['academy_type'][0] == 'university' || jobDetails.academy['academy_type'][1] == 'university'}">University
+                        <input type="checkbox" name="academyOptions" id="academy1"
+                               ng-checked="jobDetails.academy['academy_type'][0] == 'university' || jobDetails.academy['academy_type'][1] == 'university'"
+                               value="university">
+                        <span class="glyphicon glyphicon-ok"></span>
+                    </label>
+
+                    <label class="btn btn-default"
+                           ng-class="{active:jobDetails.academy['academy_type'][0] == 'college' || jobDetails.academy['academy_type'][1] == 'college'}">College
+                        <input type="checkbox" name="academyOptions" id="academy2" value="college"
+                               ng-checked="jobDetails.academy['academy_type'][0] == 'college' || jobDetails.academy['academy_type'][1] == 'college'">
+                        <span class="glyphicon glyphicon-ok"></span>
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Candidate Type:</label>
+
+                <div class="btn-group candidate_type" data-toggle="buttons" required>
+                    <label class="btn btn-default"
+                           ng-class="{active:jobDetails.candidate_type[0]=='student' || jobDetails.candidate_type[1]=='student' || jobDetails.candidate_type[2]=='student' || jobDetails.candidate_type[3]=='student' || jobDetails.candidate_type[4]=='student'}">Students
+                        <input type="checkbox" value="student"
+                               ng-checked="jobDetails.candidate_type[0]=='student' || jobDetails.candidate_type[1]=='student' || jobDetails.candidate_type[2]=='student' || jobDetails.candidate_type[3]=='student' || jobDetails.candidate_type[4]=='student'">
+                        <span class="glyphicon glyphicon-ok"></span>
+                    </label>
+
+                    <label class="btn btn-default"
+                           ng-class="{active:jobDetails.candidate_type[0]=='mothers' || jobDetails.candidate_type[1]=='mothers' || jobDetails.candidate_type[2]=='mothers' || jobDetails.candidate_type[3]=='mothers' || jobDetails.candidate_type[4]=='mothers'}">Mothers
+                        <input type="checkbox" value="mothers"
+                               ng-checked="jobDetails.candidate_type[0]=='mothers' || jobDetails.candidate_type[1]=='mothers' || jobDetails.candidate_type[2]=='mothers' || jobDetails.candidate_type[3]=='mothers' || jobDetails.candidate_type[4]=='mothers'">
+                        <span class="glyphicon glyphicon-ok"></span>
+                    </label>
+
+                    <label class="btn btn-default"
+                           ng-class="{active:jobDetails.candidate_type[0]=='discharged' || jobDetails.candidate_type[1]=='discharged' || jobDetails.candidate_type[2]=='discharged' || jobDetails.candidate_type[3]=='discharged' || jobDetails.candidate_type[4]=='discharged'}">Discharged
+                        <input type="checkbox" value="discharged"
+                               ng-checked="jobDetails.candidate_type[0]=='discharged' || jobDetails.candidate_type[1]=='discharged' || jobDetails.candidate_type[2]=='discharged' || jobDetails.candidate_type[3]=='discharged' || jobDetails.candidate_type[4]=='discharged'">
+                        <span class="glyphicon glyphicon-ok"></span>
+                    </label>
+                    <label class="btn btn-default"
+                           ng-class="{active:jobDetails.candidate_type[0]=='pensioners' || jobDetails.candidate_type[1]=='pensioners' || jobDetails.candidate_type[2]=='pensioners' || jobDetails.candidate_type[3]=='pensioners' || jobDetails.candidate_type[4]=='pensioners'}">Pensioners
+                        <input type="checkbox" value="pensioners"
+                               ng-checked="jobDetails.candidate_type[0]=='pensioners' || jobDetails.candidate_type[1]=='pensioners' || jobDetails.candidate_type[2]=='pensioners' || jobDetails.candidate_type[3]=='pensioners' || jobDetails.candidate_type[4]=='pensioners'">
+                        <span class="glyphicon glyphicon-ok"></span>
+                    </label>
+                    <label class="btn btn-default"
+                           ng-class="{active:jobDetails.candidate_type[0]=='graduated' || jobDetails.candidate_type[1]=='graduated' || jobDetails.candidate_type[2]=='graduated' || jobDetails.candidate_type[3]=='graduated' || jobDetails.candidate_type[4]=='graduated'}">Graduate
+                        <input type="checkbox" a value="graduated"
+                               ng-checked="jobDetails.candidate_type[0]=='graduated' || jobDetails.candidate_type[1]=='graduated' || jobDetails.candidate_type[2]=='graduated' || jobDetails.candidate_type[3]=='graduated' || jobDetails.candidate_type[4]=='graduated'">
+                        <span class="glyphicon glyphicon-ok"></span>
+                    </label>
+                </div>
+            </div>
+            <input type="hidden" value="software engineer" class="form-control">
+
+            <div class="form-group">
+                <label>Scope of Position:</label>
+
+                <div class="btn-group scope_of_position" data-toggle="buttons" required>
+                    <label class="btn btn-default"
+                           ng-class="{active:jobDetails.scope_of_position[0]=='full' || jobDetails.scope_of_position[1]=='full' || jobDetails.scope_of_position[2]=='full'}">Full
+                        Time
+                        <input type="checkbox" value="full"
+                               ng-checked="jobDetails.scope_of_position[0]=='full' || jobDetails.scope_of_position[1]=='full' || jobDetails.scope_of_position[2]=='full'">
+                        <span class="glyphicon glyphicon-ok"></span>
+                    </label>
+
+                    <label class="btn btn-default"
+                           ng-class="{active:jobDetails.scope_of_position[0]=='part' || jobDetails.scope_of_position[1]=='part' || jobDetails.scope_of_position[2]=='part'}">Part
+                        Time
+                        <input type="checkbox" value="part"
+                               ng-checked="jobDetails.scope_of_position[0]=='part' || jobDetails.scope_of_position[1]=='part' || jobDetails.scope_of_position[2]=='part'">
+                        <span class="glyphicon glyphicon-ok"></span>
+                    </label>
+
+                    <label class="btn btn-default"
+                           ng-class="{active:jobDetails.scope_of_position[0]=='hours' || jobDetails.scope_of_position[1]=='hours' || jobDetails.scope_of_position[2]=='hours'}">Hours
+                        Time<input type="checkbox" value="hours"
+                                   ng-checked="jobDetails.scope_of_position[0]=='hours' || jobDetails.scope_of_position[1]=='hours' || jobDetails.scope_of_position[2]=='hours'">
+                        <span class="glyphicon glyphicon-ok"></span>
+                    </label>
+                </div>
+            </div>
+            <div class="form-group" ng-model="compability"
+                 ng-value="compability=jobDetails['compatibility_level'] || '0'">
+                <label>Min Compatibility:</label>
+                <ul class="pagination pagination-lg">
+                    <li><a href="" ng-class="{paginationSelected: jobDetails.compatibility_level == 10}"
+                           ng-click="jobDetails['compatibility_level']=10;">10</a></li>
+                    <li><a href="" ng-class="{paginationSelected: jobDetails.compatibility_level == 20}"
+                           ng-click="jobDetails['compatibility_level']=20">20</a></li>
+                    <li><a href="" ng-class="{paginationSelected: jobDetails.compatibility_level == 30}"
+                           ng-click="jobDetails['compatibility_level']=30">30</a></li>
+                    <li><a href="" ng-class="{paginationSelected: jobDetails.compatibility_level == 40}"
+                           ng-click="jobDetails['compatibility_level']=40">40</a></li>
+                    <li><a href="" ng-class="{paginationSelected: jobDetails.compatibility_level == 50}"
+                           ng-click="jobDetails['compatibility_level']=50">50</a></li>
+                    <li><a href="" ng-class="{paginationSelected: jobDetails.compatibility_level == 60}"
+                           ng-click="jobDetails['compatibility_level']=60">60</a></li>
+                    <li><a href="" ng-class="{paginationSelected: jobDetails.compatibility_level == 70}"
+                           ng-click="jobDetails['compatibility_level']=70">70</a></li>
+                    <li><a href="" ng-class="{paginationSelected: jobDetails.compatibility_level == 80}"
+                           ng-click="jobDetails['compatibility_level']=80">80</a></li>
+                    <li><a href="" ng-class="{paginationSelected: jobDetails.compatibility_level == 90}"
+                           ng-click="jobDetails['compatibility_level']=90">90</a></li>
+                    <li><a href="" ng-class="{paginationSelected: jobDetails.compatibility_level == 100}"
+                           ng-click="jobDetails['compatibility_level']=100">100</a></li>
+                </ul>
+                <section circle id="circle-container-0" ng-model="jobDetails.compability"
+                         data-compability="{{jobDetails['compatibility_level']}}">
+                    <h5 ng-if="!jobDetails['compatibility_level']">0%</h5>
+                    <h5 ng-if="jobDetails['compatibility_level'] > 0">{{jobDetails['compatibility_level']}}%</h5>
+                </section>
+            </div>
+            <div class="form-group">
+                <label for="description">Description:</label>
+        <textarea class="form-control" rows="10" id="description" name="original_text" required
+                  ng-model="jobDetails.original_text['description']"
+                  placeholder="Please Type Description, Example: We are Apple Company, since 1960..."
+        >{{jobDetails.original_text['description']}}</textarea>
+            </div>
+            <div class="form-group requirements">
+                <label for="requirementsMust">Requirements - Must:</label>
+        <textarea class="form-control" rows="5" id="requirementsMust" required
+                  ng-change="changeContent()" ng-model="mustReqiurment"
+                  placeholder="Please write your Must Requirements"
+                  name="requirements">{{jobDetails.original_text['requirements'].split("|||")[0]}}</textarea>
+            </div>
+            <div class="form-group requirements">
+                <label for="requirementsAdvantage">Requirements - Advantage:</label>
+        <textarea class="form-control" rows="5" id="requirementsAdvantage" ng-model="AdvReqiurment"
+                  placeholder="Please write your Advantage Requirements"  ng-change="changeContent()"
+                  name="requirements">{{jobDetails.original_text['requirements'].split("|||")[1]}}</textarea>
+            </div>
+
+            <div class="form-group experienceBeforeParse">
+                <img class="Garrow" src="images/Garrow.png">
+                <input type="button" class="btn btn-warning"
+                       ng-click="parseExperience()" value="Parse my Experience">
+            </div>
+            <i class="fa fa-refresh fa-spin fa-spin2 fa-3x fa-fw margin-bottom"></i>
+            <!-- FROM HERE - REQUERMENTS -->
+            <i class="fa fa-times fa-3x removeCombination" aria-hidden="true" ng-click="removeCombination()"></i>
+
+            <div class='contentWrapper ng-cloak requirementsWrapper'>
+
+
+                <div class='content'>
+                    <div class="row-fluid">
+                        <ul class="thumbnails">
+                            <article><h1>Must</h1>
+                                <li class="span3">
+                                    <div class="thumbnail must" data-drop="true" ng-model='list1'
+                                         data-jqyoui-options="optionsList1"
+                                         jqyoui-droppable="{multiple:true}">
+                                        <div class="caption">
+                                            <div class="btn btn-info btn-draggable" ng-repeat="item in list1"
+                                                 ng-show="item.name"
+                                                 data-drag="{{item.drag}}" data-jqyoui-options="{revert: 'invalid'}"
+                                                 ng-model="list1"
+                                                 jqyoui-draggable="{index: {{$index}},animate:true}">
+                                                <i class="fa fa-times" aria-hidden="true"
+                                                   ng-click="removeLang(item.langId,'must')"></i>
+                                                <input data-lang-name="{{item.langId}}" ng-model="item.name"
+                                                       droppable-must
+                                                       ng-change="changeLangeName(item.langId)" class="langsName"
+                                                       type="text"
+                                                       value="{{item.name}}">
+
+                                                <h3 style="    font-size: 10px; line-height: 0px;">Percentage: </h3>
+
+                                                <div class="input-group">
+                             <span class="input-group-btn"><button ng-click="minusButton(item.langId)"
+                                                                   type="button"
+                                                                   class="btn btn-danger btn-number minusButton Mbutton"
+                                                                   data-type="minus"
+                                                                   data-field="quant[2]"><i class="fa fa-minus"
+                                                                                            aria-hidden="true"></i>
+                             </button></span>
+                                                    <input type="text" name="quant[2]" data-pr-num="{{item.langId}}"
+                                                           class="form-control input-number center1" disabled
+                                                           value="{{item.percentage}}"
+                                                           min="0" max="100">
+
+                        <span class="input-group-btn"> <button type="button"
+                                                               class="btn btn-success btn-number plusButton PButton"
+                                                               data-type="plus"
+                                                               ng-click="plusButton(item.langId)"
+                                                               data-field="quant[2]"><i
+                                class="fa fa-plus" aria-hidden="true"></i></button></span>
+                                                </div>
+                                                <div style="margin-top:5px;">
+                                                    <select class="form-control" data-select="{{item.langId}}"
+                                                            style="width: 100%;" ng-model="years"
+                                                            ng-change="changeYears(item.langId)">
+                                                        <option value="0" ng-selected="item.years == 0">no experience
+                                                        </option>
+                                                        <option value="1" ng-selected="item.years == 1">1 years</option>
+                                                        <option value="2" ng-selected="item.years == 2">2 years</option>
+                                                        <option value="3" ng-selected="item.years == 3">3 years</option>
+                                                        <option value="4" ng-selected="item.years == 4">4 years</option>
+                                                        <option value="5" ng-selected="item.years == 5">5 years</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </article>
+                            <article>
+                                <h1>Adv</h1>
+
+                                <li class="span3">
+                                    <div class="thumbnail" data-drop="true" ng-model='list2'
+                                         data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=list2])'}"
+                                         jqyoui-droppable="{multiple:true}">
+                                        <div class="caption">
+                                            <div class="btn btn-info btn-draggable" ng-repeat="item in list2"
+                                                 ng-show="item.name"
+                                                 data-drag="{{item.drag}}" data-jqyoui-options="{revert: 'invalid'}"
+                                                 ng-model="list2" jqyoui-draggable="{index: {{$index}},animate:true}">
+                                                <i class="fa fa-times" aria-hidden="true"
+                                                   ng-click="removeLang(item.langId,'adv')"></i>
+                                                <input type="text" data-lang-name="{{item.langId}}" ng-model="item.name"
+                                                       droppable-adv
+                                                       ng-change="changeLangeName(item.langId)" class="langsName"
+                                                       value="{{item.name}}">
+
+                                                <div style="margin-top:5px;">
+                                                    <select class="form-control" style="    width: 100%;"
+                                                            data-select="{{item.langId}}" ng-model="years"
+                                                            ng-change="changeYears(item.langId)">
+                                                        <option value="0" ng-selected="item.years == 0">no experience
+                                                        </option>
+                                                        <option value="1" ng-selected="item.years == 1">1 years</option>
+                                                        <option value="2" ng-selected="item.years == 2">2 years</option>
+                                                        <option value="3" ng-selected="item.years == 3">3 years</option>
+                                                        <option value="4" ng-selected="item.years == 4">4 years</option>
+                                                        <option value="5" ng-selected="item.years == 5">5 years</option>
+                                                    </select>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </article>
+                            <article>
+                                <h1>Or</h1>
+                                <li class="span3">
+                                    <div class="thumbnail" data-drop="true" ng-model='list3'
+                                         data-jqyoui-options="optionsList3"
+                                         data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=list3])'}"
+                                         jqyoui-droppable="{multiple:true}">
+                                        <div class="caption">
+                                            <div class="btn btn-info btn-draggable" ng-repeat="item in list3"
+                                                 ng-show="item.name"
+                                                 data-drag="{{item.drag}}" data-jqyoui-options="{revert: 'invalid'}"
+                                                 ng-model="list3" jqyoui-draggable="{index: {{$index}},animate:true}">
+                                                <i class="fa fa-times" aria-hidden="true"
+                                                   ng-click="removeLang(item.langId,'or')"></i>
+                                                <input type="text" data-lang-name="{{item.langId}}" ng-model="item.name"
+                                                       droppable-or
+                                                       ng-change="changeLangeName(item.langId)" class="langsName"
+                                                       value="{{item.name}}">
+
+                                                <div style="margin-top:5px;">
+                                                    <select class="form-control" style="    width: 100%;"
+                                                            data-select="{{item.langId}}" ng-model="years"
+                                                            ng-change="changeYears(item.langId)">
+                                                        <option value="0" ng-selected="item.years == 0">no experience
+                                                        </option>
+                                                        <option value="1" ng-selected="item.years == 1">1 years</option>
+                                                        <option value="2" ng-selected="item.years == 2">2 years</option>
+                                                        <option value="3" ng-selected="item.years == 3">3 years</option>
+                                                        <option value="4" ng-selected="item.years == 4">4 years</option>
+                                                        <option value="5" ng-selected="item.years == 5">5 years</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </article>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <i class="fa fa-arrow-right fa-3x combArrow" ng-click="nextCombination('right')"
+               style="float:left; cursor: pointer;" aria-hidden="true"></i>
+            <i class="fa fa-arrow-left fa-3x combArrow" ng-click="nextCombination('left')"
+               style="float:left; cursor: pointer;" aria-hidden="true"></i>
+            <p class="combinations">Combination {{combinationIndx+1}} </p>
+            <!--BOTTOM PARSING-->
+            <div class="navbar-inner">
+                <div class="container form-inline" style="text-align: center;">
+
+                    <div class="btn btn-info btn-draggable langs" ng-repeat="item in langs"
+                         ng-show="item.name"
+                         data-drag="{{item.drag}}" data-jqyoui-options="{revert: 'invalid'}"
+                         ng-model="langs" jqyoui-draggable="{index: {{$index}},animate:true}">
+
+                        <input type="text" data-lang-name="{{item.langId}}" ng-model="item.name"
+                               ng-change="changeLangeName(item.langId)" class="langsName"
+                               value="{{item.name}}">
+
+                        <div style="margin-top:5px;">
+                            <select class="form-control" style="    width: 100%;"
+                                    data-select="{{item.langId}}" ng-model="years"
+                                    ng-change="changeYears(item.langId)">
+                                <option value="0" ng-selected="item.years == 0">no experience</option>
+                                <option value="1" ng-selected="item.years == 1">1 years</option>
+                                <option value="2" ng-selected="item.years == 2">2 years</option>
+                                <option value="3" ng-selected="item.years == 3">3 years</option>
+                                <option value="4" ng-selected="item.years == 4">4 years</option>
+                                <option value="5" ng-selected="item.years == 5">5 years</option>
+                            </select>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group buttonsAfterParse">
+                <img class="Garrow" src="images/Garrow.png">
+
+                <input type="button" class="btn btn-warning"
+                       ng-click="addDynamicLang()" value="Add another LANGUAGE"><!--
+                <input type="button" class="btn btn-warning"
+                       ng-click="saveCombination()" value="Save">-->
+                <img class="Garrow" src="images/Garrow.png">
+
+                <input type="button" class="btn btn-warning"
+                       ng-click="addDynamicCombination()" value="Save and Create another Combination">
+
+            </div>
+
+            <!-- TILL HERE - REQUERMENTS -->
+            <div ng-include="'employer/jobparameters.html'"></div>
+
+            <div class="buttonBorder">
+                <!-- <button type="button" id="submitAfterParse" class="btn btn-warning disabled"  data-toggle="modal" data-target="#sendJob" ng-click="submitForm()"  >Send</button> -->
+                <button type="submit" id="submitAfterParse" class="btn btn-default disabled">
+                    <img class="Garrow" src="images/Garrow.png">
+
+                    Save
+                </button>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+<!-- Modal -->
+<section class="modal fade" id="sendJob" role="dialog">
+    <div class="modal-dialog modal-sm jobModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">{{status}}</h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="exitStatus()">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+</section>

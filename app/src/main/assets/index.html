@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html ng-app="cvmatcherApp">
+<head>
+    <title>CVMatcher</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#00A651">
+
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" media="all" href="css/style.css"/>
+
+    <link rel="icon" type="image/cvmatcher.icon" href="./images/logo.png"/>
+
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/progressbar.min.js"></script>
+    <script src="js/jquery.ui.touch-punch.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/hammer.min.js"></script>
+    <script src="js/messageResource.min.js"></script>
+    <script src="js/skill.bars.jquery.js"></script>
+
+    <!-- added the maps.googleapis because it give me no warnings, so the local is locations with warning in the console
+    <script src="js/location.js?libraries=places"></script>-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVPuauj0tQuhm28vMic6xjtcvn11CpDNI&libraries=places"></script>
+    <script src="js/jquery.geocomplete.js"></script>
+    <script src="js/bootstrap-select.min.js"></script>
+</head>
+<body>
+
+<div class="wrapper">
+    <div ng-view>
+        <check-google-log-in/>
+    </div>
+</div>
+
+<script src="js/lib/angular/angular.min.js"></script>
+<script src="js/lib/angular/angular-route.min.js"></script>
+<script src='js/lib/angular/ng-infinite-scroll.min.js'></script>
+<script src='js/lib/angular/angular-dragdrop-1.0.2.js'></script>
+<script src="js/site.js"></script>
+
+<script src="js/controllers/usersLogin.js"></script>
+<script src="js/controllers/directives.js"></script>
+<script src="js/controllers/googleSignIn.js"></script>
+<script src="js/controllers/jobSeeker/searchJobs.js"></script>
+<script src="js/controllers/jobSeeker/myJobs.js"></script>
+<script src="js/controllers/jobSeeker/profile.js"></script>
+<script src="js/controllers/jobSeeker/match.js"></script>
+
+<script src="js/controllers/employer/myJobs.js"></script>
+<script src="js/controllers/employer/company_profile.js"></script>
+<script src="js/controllers/employer/candidates.js"></script>
+<script src="js/controllers/employer/resume.js"></script>
+<script src="js/controllers/employer/job.js"></script>
+<script src="js/controllers/employer/hired.js"></script>
+
+<link rel="stylesheet" type="text/css" media="all" href="css/pages/media.css"/>
+</body>
+</html>

@@ -1,0 +1,110 @@
+
+.myjobsWrapper .pencilMyJobs{margin-right: 14px;}
+
+.myjobsWrapper .compabilityM{
+    position: absolute;
+    top: 0;
+    right: 19px;
+}
+
+.myjobsWrapper .nav > li > a {
+    position: relative;
+    display: block;
+    padding: 0;
+}
+
+.myjobsWrapper .myJobsBox {
+    margin-top: 0px;
+}
+
+.myjobsWrapper .form-control {
+    display: block;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.myjobsWrapper .navigation {
+    margin-left: 0px;
+    z-index: 111;
+    margin-top: 0px;
+    padding: 0;
+}
+
+.myjobsWrapper svg {
+    overflow: auto;
+}
+
+
+.myjobsWrapper header h2 {
+    position: absolute;
+    top: 12%;
+    left: 0%;
+    font-size: 40px;
+    color: white;
+    font-family: almoni-dl-aaa-regular;
+}
+
+.myjobsWrapper form {
+    position: absolute;
+    top: 80px;
+    left: -3%;
+}
+
+.myjobsWrapper button {
+    margin-top: 116px;
+    background-color: transparent;
+    border: 0;
+    font-size: 16px;
+    font-family: almoni-dl-aaa-regular;
+    color: white;
+    float: left;
+    margin-left: 0%;
+    padding-left: 0;
+}
+
+.myjobsWrapper button:hover,.myjobsWrapper button:active:hover,.myjobsWrapper button:focus {
+    outline:none;
+    /* padding-left: 0; */
+    opacity: 0.6;
+    background-color: transparent;
+    color:#fff;
+}
+
+.myjobsWrapper form {
+    width: 60%;
+}
+
+.myjobsWrapper form button {
+    float: left;
+    width: 15%;
+    padding-right: 0px;
+    margin-left: 10px;
+    padding-left: 0px;
+}
+
+.myjobsWrapper section {
+    width: 100%;
+}
+
+.myjobsWrapper section > div {
+    border-radius: 0;
+}
+
+.myjobsWrapper .nav-tabs li {
+    width: 25%;
+}
+
+.myjobsWrapper section > div {
+    border-radius: 10px;
+    margin-top: 6px;
+    margin-bottom: 34px;
+    position: relative;
+    border-bottom: 1px solid #fff;
+    border-radius: 0;
+}
+
+.myjobsWrapper .jobTitles{
+    font-weight: bold;
+    font-size: 21px;
+    display: block;
+}

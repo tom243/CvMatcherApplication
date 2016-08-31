@@ -1,0 +1,164 @@
+<div class="candidatesImgCover"></div>
+
+<div class="resumeWrapper" ng-init="init()">
+    <h3 class="navigation"></h3>
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+    <input type="hidden" class="starModal btn btn-info btn-lg"
+           data-toggle="modal" data-target="#myModal"/>
+    <input type="hidden" class="leftModal btn btn-info btn-lg"
+           data-toggle="modal" data-target="#leftModal"/>
+
+    <p class="noMoreCandidates">There is no more CV's left for this job</p>
+    <article id="users">
+        <!-- User Name -->
+        <div class="borderUserDetailsBox">
+            <div class="userDetailsBox" ng-init="getUserJson()">
+                <i id="candidateUnLike" class='fa fa-thumbs-o-up fa-2x'
+                   ng-if="(user.status.current_status == 'liked' || user.status.current_status == 'unread' || user.status.current_status == 'seen') && hiredPage == false && archivePage == false" ng-click='addCandidateToLikeUnlike(user._id,"unliked")'></i>
+
+                <h3>{{user['user'].first_name}} {{user['user'].last_name}} Resume</h3>
+                <i id="candidateLike"
+                   ng-if="(user.status.current_status == 'unliked' || user.status.current_status == 'unread' || user.status.current_status == 'seen') && hiredPage == false && archivePage == false" class='fa fa-thumbs-o-up fa-2x' ng-click='addCandidateToLikeUnlike(user._id,"liked")'></i>
+
+                <h5><i class="fa fa-book"></i> {{user.sector}}</h5>
+
+
+                <div>
+
+                        <h4><i class="fa fa-location-arrow"></i> {{user['user'].address}}</h4>
+                </div>
+                <div>
+                        <h4> <a href="tel:{{user['user'].phone_number}}"><i class="fa fa-phone"></i> {{user['user'].phone_number}}</a></h4></a>
+                </div>
+                <div>
+
+                        <h4><a href="mailto:{{user['user'].email}}"><i class="fa fa-envelope"></i> {{user['user'].email}}</a></h4>
+                </div>
+                <div>
+                        <h4> <a href="{{user['user'].linkedin}}"><i class="fa fa-linkedin-square"></i> LinkedIn</a></h4>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- TIMELINE -->
+        <section class="resumeYears">
+            <div class="borderTimelineTitle1">
+                <h3>Education</h3>
+            </div>
+            <div class="borderTimelineTitle2">
+                <h3>Experience</h3>
+            </div>
+            <div class="container">
+                <div class="page-header">
+                    <h1 id="timeline">Timeline</h1>
+                </div>
+                <!-- section of year -->
+                <ul class="timeline">
+                    <!-- section of year -->
+                    <!-- <li class="timeline-inverted"> for Employment side -->
+                    <li ng-repeat="timeline in user.original_text['history_timeline']"
+                        ng-class="{'timeline-inverted': timeline['type'] == 'experience'}">
+                        <div class="timeline-badge">
+                            <i class="fa fa-file-text-o"></i>
+                        </div>
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h2 class='timelineTitle' ng-if="timeline['type'] == 'experience'">Experience</h2>
+                                <h2 class='timelineTitle' ng-if="timeline['type'] == 'education'">Education</h2>
+                                <p>
+                                    <small class="text-muted">{{timeline['start_year']}} - {{timeline['end_year']}}
+                                    </small>
+                                </p>
+                            </div>
+                            <div class="timeline-body">
+                                <p>{{timeline['text']}}</p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!-- TIMELINE END -->
+
+        </section>
+
+        <!-- Resume Skills -->
+        <h2 class="skillsTitle">Skills</h2>
+
+        <div id="formulasAppend">
+
+        </div>
+
+        <div class="requirements-skills-bar">
+
+        </div>
+
+        <div id="predictAppend">
+
+            <h2><img ng-src="{{user['predict_result'] == true && 'images/v.png' || 'images/x.png'}}">{{user['predict_result'] == true ? predictTrue : predictFalse}}</h2>
+        </div>
+
+    </article>
+    <!-- Modal -->
+    <section class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Rate by Stars</h4>
+                </div>
+                <div class="modal-body">
+                    <!-- STAR RANK -->
+					<span class="rating  animated pulse">
+			    <input type="radio" class="rating-input" id="rating-5" ng-click="rating(5)" name="rating">
+				<label for="rating-5" class="rating-star"
+                       ng-style="{'background-position':'0 -16'}"></label>
+				<input type="radio" class="rating-input" id="rating-4" ng-click="rating(4)" name="rating">
+				<label for="rating-4" class="rating-star"
+                       ng-style="{'background-position':'0 -16'}"></label>
+				<input type="radio" class="rating-input" id="rating-3" ng-click="rating(3)" name="rating">
+				<label for="rating-3" class="rating-star"
+                       ng-style="{'background-position':'0 -16'}"></label>
+				<input type="radio" class="rating-input" id="rating-2" ng-click="rating(2)" name="rating">
+				<label for="rating-2" class="rating-star"
+                       ng-style="{'background-position':'0 -16'}"></label>
+				<input type="radio" class="rating-input" id="rating-1" ng-click="rating(1)" name="rating">
+				<label for="rating-1" class="rating-star"
+                       ng-style="{'background-position':'0 -16'}"></label>
+			</span>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default bringNextCandidate" data-dismiss="modal"
+                            ng-click="bringNextCandidate('liked',null)">
+                        Send
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Modal -->
+    <section class="modal fade" id="leftModal" role="dialog">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Description</h4>
+                    <h5 class="modal-title">Please type your Reason</h5>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group">
+				<textarea class="form-control" rows="5" name="original_text" ng-model="original_text"
+                          id="comment" required></textarea>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"
+                            ng-click="bringNextCandidate('unliked',original_text)">
+                        Send
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

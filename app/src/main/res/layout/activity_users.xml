@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activities.MainActivity">
+
+    <RelativeLayout
+        android:id="@+id/nativeHeader"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#000000"
+        android:focusable="false"
+        android:nestedScrollingEnabled="true"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:importantForAccessibility="noHideDescendants">
+
+        <ImageView
+            android:id="@+id/logoImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:adjustViewBounds="true"
+            android:paddingBottom="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="5dp"
+            android:src="@drawable/cv_matcher_logo"/>
+
+        <ImageView
+            android:id="@+id/googlePlusUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:adjustViewBounds="true"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:src="@drawable/default_google_user"
+            android:paddingLeft="5dp" />
+
+        <TextView
+            android:background="@drawable/customborder"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_alignBottom="@+id/googlePlusUser"
+            android:layout_alignParentStart="false"
+            android:layout_alignParentEnd="false"
+            android:layout_alignParentBottom="true"
+            android:shadowColor="#D3D3D3" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:measureWithLargestChild="false"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:background="@color/lightGrayBackground"
+        android:layout_below="@+id/nativeHeader">
+
+        <WebView
+            android:id="@+id/usersWebView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/lightGrayBackground"
+            android:layout_alignParentTop="true"
+            android:visibility="visible" />
+        <ProgressBar
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:id="@+id/usersProgressBar"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:minHeight="200px"
+            android:minWidth="200px"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

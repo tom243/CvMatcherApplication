@@ -1,0 +1,58 @@
+<div  ng-init="getJobJson()">
+    <header class="jobP">
+        <h2>Define your priorities</h2>
+    </header>
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+    <p class="jobPExp">We have defined default parameters for you.</p>
+    <p class="jobPExp">You can modify any bar by clicking and dragging it.</p>
+
+    <!--  slider -->
+    <ul id="sliders">
+        <p>
+            <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+
+            Academy (University, Collage)</p>
+        <li>
+            <div class="slider "></div>
+            <span class="value academySlider" data-id="1" ng-if='formula["academy"]'>{{formula["academy"]}} / {{100-totalSum+formula["academy"]}} Left</span>
+            <span class="value academySlider" data-id="1" ng-if='!formula["academy"]'>0 / 100 Left</span>
+        </li>
+        <p>
+            <i class="fa fa-users" aria-hidden="true"></i>
+
+            Candidate Type (Students, Mothers etc)</p>
+        <li>
+            <div class="slider"></div>
+            <span class="value candidate_typeSlider" data-id="2" ng-if='formula["candidate_type"]'>{{formula["candidate_type"]}} / {{100-totalSum+formula["candidate_type"]}} Left</span>
+            <span class="value candidate_typeSlider" data-id="2" ng-if='!formula["candidate_type"]'>0 / 100 Left</span>
+        </li>
+        <p>
+            <i class="fa fa-map-marker" aria-hidden="true"></i>
+
+            Locations (Physical proximity to the workplace)</p>
+        <li>
+            <div class="slider"></div>
+            <span class="value locationsSlider" data-id="3" ng-if='formula["locations"]'>{{formula["locations"]}} / {{100-totalSum+formula["locations"]}} Left</span>
+            <span class="value locationsSlider" data-id="3" ng-if='!formula["locations"]'>0 / 100 Left</span>
+        </li>
+        <p>
+            <i class="fa fa-briefcase" aria-hidden="true"></i>
+
+            Requirements</p>
+        <li>
+            <div class="slider"></div>
+            <span class="value requirementsSlider" data-id="4" ng-if='formula["requirements"]'>{{formula["requirements"]}} / {{100-totalSum+formula["requirements"]}} Left</span>
+            <span class="value requirementsSlider" data-id="4" ng-if='!formula["requirements"]'>0 / 100 Left</span>
+        </li>
+        <p>
+            <i class="fa fa-clock-o" aria-hidden="true"></i>
+
+            Scope of Position (Full time, Part time, By hours)</p>
+        <li>
+            <div class="slider"></div>
+            <span class="value scope_of_positionSlider" data-id="5" ng-if='formula["scope_of_position"]'>{{formula["scope_of_position"]}} / {{100-totalSum+formula["scope_of_position"]}} Left</span>
+            <span class="value scope_of_positionSlider" data-id="5"
+                  ng-if='!formula["scope_of_position"]'>0 / 100 Left</span>
+        </li>
+    </ul>
+</div>

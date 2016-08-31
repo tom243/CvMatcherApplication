@@ -1,0 +1,49 @@
+<div class="jobCover"></div>
+<div class="hiredWrapper" ng-init="init()">
+    <h3 class="navigation"></h3>
+
+
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+    <header>
+        <h2 class="hiredTitle">Hired</h2>
+    </header>
+
+    <div class="searchHiredCndidate">
+        <input type="text" id='searchHire'  placeholder="Find Hired Candidate" ng-model="search"
+               class="form-control">
+    </div>
+    <h4 class="hiredCandidatesLength">{{hireCandidates.length}} Candidates has been Hired!</h4>
+
+    <!-- candidates sections -->
+    <div class="filterHired">
+        <button ng-click="searchText.personal_properties['decision'] = all"><img class="Garrow" src="images/Garrow.png">Show All</button>
+        <button ng-click="searchText.personal_properties['decision'] = true"><img class="Garrow" src="images/Garrow.png">Positive Feedback</button>
+        <button ng-click="searchText.personal_properties['decision'] = false"><img class="Garrow" src="images/Garrow.png">Negative Feedback</button>
+        <button ng-click="searchText.personal_properties['decision'] != false"><img class="Garrow" src="images/Garrow.png">Not Selected</button>
+    </div>
+
+
+    <article class="hiredCandWrap">
+        <section ng-repeat="hireCandidate in hireCandidates | filter:searchText " id="hire-cand{{hireCandidate._id}}">
+            <div class="hireCandidate animated fadeInUp" id="indx-{{$index}}">
+                <div class="fired" ng-click="fired($index,hireCandidate.personal_properties['_id'])"
+                     ng-class="{on:hireCandidate.personal_properties['decision'] == false}">
+                </div>
+
+                <section>
+                    <h3
+                            ng-bind-html="hireCandidate.user['first_name'] | highlight:search">
+                        {{hireCandidate.user['first_name']}} {{hireCandidate.user['last_name']}}</h3>
+                    <h4>ID: {{hireCandidate.user['personal_id']}}</h4>
+                </section>
+
+
+                <div class="hiredImg" ng-click="hired($index,hireCandidate.personal_properties['_id'])"
+                     ng-class="{on:hireCandidate.personal_properties['decision'] == true}">
+                </div>
+
+            </div>
+        </section>
+    </article>
+</div>
+

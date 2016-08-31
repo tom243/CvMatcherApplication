@@ -1,0 +1,294 @@
+
+.jobWrapper .ui-corner-all{
+    left: 1%;
+}
+
+.jobWrapper .form-control {
+    width: 70%;
+}
+
+.jobWrapper .combArrow{
+    font-size: 3em;
+    color: #fff;
+    margin-top: 12px;
+    font-size: x-large;
+    clear: both;
+}
+.jobWrapper .thumbnails h1 {
+    font-weight: normal;
+    margin: 0px;
+    color: #fff;
+    text-align: center;
+}
+
+.jobWrapper #sliders p .fa {
+    color: #4F846A;
+}
+
+.jobWrapper .btn-success:hover {
+    color: #fff;
+    background-color: #254117;
+    border-color: #25411D;
+    opacity: 0.6;
+}
+
+.jobWrapper .btn-success {
+    color: #fff;
+    background-color: #254117;
+    border-color: #254117;
+}
+
+
+
+.jobWrapper .jobEdit > div {
+    width: 100% !important;
+    padding: 6px 0px;
+    margin-bottom: 0px !important;
+}
+
+/*languges after parsing*/
+.jobWrapper .btn-info {
+    color: #fff;
+    background-color: #ccc;
+    border-color: #ccc;
+    margin-top: 2px;
+}
+
+
+.jobWrapper .btn-info.active.focus, .jobWrapper .btn-info.active:focus, .jobWrapper .btn-info.active:hover, .jobWrapper .btn-info:active.focus, .jobWrapper .btn-info:active:focus, .jobWrapper .btn-info:active:hover, .jobWrapper .open > .dropdown-toggle.btn-info.focus, .jobWrapper .open > .dropdown-toggle.btn-info:focus, .jobWrapper .open > .dropdown-toggle.btn-info:hover {
+    color: #fff;
+    background-color: #ddd;
+    border-color: #ddd;
+}
+
+.jobWrapper .buttonsAfterParse .Garrow{
+    margin-top: 12px;
+}
+
+.jobWrapper .experienceBeforeParse .Garrow{
+    margin-top: 12px;
+}
+
+.jobWrapper .btn-warning.active, .btn-warning:active, .open > .dropdown-toggle.btn-warning {
+    color: #fff;
+    background-color: transparent;
+}
+
+.jobWrapper .btn-warning:hover {
+    color: #fff;
+    background-color: transparent;
+    border-color: transparent;
+    opacity: 0.6;
+}
+
+.jobWrapper .btn-warning.active.focus, .jobWrapper .btn-warning.active:focus, .jobWrapper .btn-warning.active:hover, .jobWrapper .btn-warning:active.focus, .jobWrapper .btn-warning:active:focus, .jobWrapper .btn-warning:active:hover, .jobWrapper .open > .dropdown-toggle.btn-warning.focus, .jobWrapper .open > .dropdown-toggle.btn-warning:focus, .jobWrapper .open > .dropdown-toggle.btn-warning:hover {
+    color: #fff;
+    background-color: transparent;
+    border-color: transparent;
+    opacity: 0.6;
+}
+
+.jobWrapper .btn-warning.focus, .jobWrapper .btn-warning:focus {
+    color: #fff;
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.jobWrapper .btn-group {
+    background-color: transparent;
+    width: 100%;
+    padding-top: 16px;
+}
+
+.jobWrapper .navigation{
+    top: -18px;
+}
+
+.jobWrapper label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.jobWrapper .jobEdit {
+    margin-bottom: 68px;
+    border: 0px;
+    float: left;
+    overflow: hidden;
+    padding: 15px 0px 15px 0px;
+    text-align: left;
+    border-radius: 0;
+    margin-top: 0px;
+    width: 100%;
+    padding-bottom: 52px !important;
+    padding-right: 12%;
+}
+
+.jobWrapper .btn-group > .btn:not(:first-child):not(:last-child):not(.dropdown-toggle) {
+    border-radius: 0;
+    color: #000;
+}
+
+.jobWrapper .btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle) {
+    border-radius: 0;
+    color: #000;
+}
+
+.jobWrapper .btn-group > .btn:last-child:not(:first-child), .btn-group > .dropdown-toggle:not(:first-child) {
+    border-radius: 0;
+    color: #000;
+}
+
+.jobWrapper .pagination-lg > li:first-child > a, .pagination-lg > li:first-child > span {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.jobWrapper .pagination-lg > li:last-child > a, .pagination-lg > li:last-child > span {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    padding-left: 1%;
+
+}
+
+.jobWrapper .pagination-lg > li > a, .pagination-lg > li > span {
+    text-align: center;
+    width: 10%;
+    color: #000;
+    padding-left: 2%;
+}
+
+.jobWrapper .pagination + section {
+    float: none;
+    width: 144px;
+    position: relative;
+    margin: 0 auto;
+    margin-top: 86px;
+}
+
+.jobWrapper .pagination + section h5 {
+    position: absolute;
+    top: 39%;
+    font-size: 30px;
+    left: 36%;
+    color: #fff;
+    font-weight: bold;
+}
+
+.jobWrapper .newJob button, html .jobWrapper input[type=button] {
+    padding-left: 0;
+    float: none;
+    border-radius: 0;
+    margin: 2px;
+    color: #fff;
+    border-color: transparent;
+    display: table;
+}
+
+
+.jobWrapper #sliders p {
+    color: #fff;
+}
+
+.jobWrapper #sliders span {
+    color: #fff;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+.jobWrapper #sliders > div {
+    padding-bottom: 16px;
+}
+
+.jobWrapper .buttonBorder button {
+    pointer-events: auto;
+    color: #fff;
+    padding-left: 0;
+    background-color: transparent;
+    border-color: transparent;
+    border-radius: 0;
+    font-size: 18px;
+}
+
+.jobWrapper .jobTitle {
+    color: #fff;
+}
+
+.jobWrapper {
+    width: 75%;
+    margin: 0 auto;
+    margin-top: 22px;
+    position: relative;
+    margin-bottom: 16%;
+}
+
+.jobWrapper .ui-slider-range.ui-widget-header.ui-corner-all.ui-slider-range-min {
+    margin-left: -1.5%;
+}
+
+.jobWrapper .thumbnail .form-control {
+    width: 100%;
+}
+
+.jobWrapper p.combinations.ng-binding {
+    color: #fff;
+    float: left;
+    clear: both;
+    font-size: 20px;
+}
+
+.jobWrapper .btn-default.disabled.focus, .jobWrapper .btn-default.disabled:focus, .jobWrapper .btn-default.disabled:hover, .jobWrapper .btn-default[disabled].focus, .jobWrapper .btn-default[disabled]:focus, .jobWrapper .btn-default[disabled]:hover, .jobWrapper fieldset[disabled] .btn-default.focus, .jobWrapper fieldset[disabled] .btn-default:focus, .jobWrapper fieldset[disabled] .btn-default:hover {
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.jobWrapper .paginationSelected {
+    z-index: 2;
+    color: #23527c !important;
+    background-color: #eee !important;
+    border-color: #ddd !important;
+}
+
+.jobWrapper .btn.active.focus, .jobWrapper .btn.active:focus, .jobWrapper .btn.focus, .jobWrapper .btn:active.focus, .jobWrapper .btn:active:focus, .jobWrapper .btn:focus {
+    outline: 0;
+    outline-offset: 0;
+    /*background: transparent;*/
+    border: 0;
+}
+
+.jobModal{
+    margin-top: 100px;
+}
+
+.jobWrapper .fa-pulse {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    color: #fff;
+    z-index: 1;
+}
+
+.jobWrapper .PButton:focus,.jobWrapper .PButton:active:focus{
+    background-color: #254117;
+    border-color: #25411D;
+}
+
+.jobWrapper .MButton {
+    color: #fff;
+    background-color: #800517;
+    border-color: #800517;
+}
+
+.jobWrapper .MButton:hover {
+    color: #fff;
+    background-color: #800517;
+    border-color: #800517;
+    opacity: 0.6;
+}
+
+.jobWrapper .MButton:focus,.jobWrapper .MButton:active:focus,.jobWrapper .MButton:active{
+    background-color: #800517 !important;
+    border-color: #800517 !important;
+}

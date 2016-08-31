@@ -1,0 +1,44 @@
+{
+  "project_info": {
+    "project_number": "91422993149",
+    "project_id": "cvmatcher-5cd30"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:91422993149:android:b100e37c0ea35897",
+        "android_client_info": {
+          "package_name": "il.ac.shenkar.cvmatcherapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "91422993149-98cslomu25hrhmqt4lgroh6bvgiuola8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "il.ac.shenkar.cvmatcherapplication",
+            "certificate_hash": "99028F48EF0C7F6FD27231309D2D5B66DBFEC775"
+          }
+        },
+        {
+          "client_id": "91422993149-abu352cg03odvve270lc2t2fp131h5av.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

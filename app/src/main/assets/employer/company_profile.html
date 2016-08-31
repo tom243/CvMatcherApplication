@@ -1,0 +1,233 @@
+<div class="profileCover"></div>
+
+<div class="companyprofileWrapper" ng-init="init();getCompanies();">
+    <h3 class="navigation"></h3>
+    <header>
+        <h2 class="profileTitle">Company Profile</h2>
+    </header>
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+    <ul class="engineering" ng-init="tab=0">
+        <li ng-class="{active:tab == 0, selected:tab == 0}"><a ng-click="tab = 0">Personal
+            Information</a></li>
+        <li ng-class="{active:tab == 1, selected:tab == 1}"><a ng-click="tab = 1">Company Profile</a></li>
+
+    </ul>
+
+    <div class="tab-content userProfile" style="    float: left; width: 100%;">
+        <div ng-show="tab == 0" class="tabsContent fade in active">
+            <!-- Content from here -->
+            <form ng-submit="submitUserDetails()">
+                <h6 class="requiredError"> *all the fields are Required! ( except LinkedIn )</h6>
+
+                <div class="form-group">
+                    <label>ID:</label> <input type="text" required value="{{employerProfile['personal_id']}}"
+                                              class="form-control personalId" name="id">
+                </div>
+                <div class="form-group">
+                    <label>First name:</label> <input type="text" required
+                                                      value="{{employerProfile['first_name']}}"
+                                                      class="form-control firstName" name="first_name">
+                </div>
+                <div class="form-group">
+                    <label>Last name:</label> <input type="text" required
+                                                     value="{{employerProfile['last_name']}}"
+                                                     class="form-control lastName">
+                </div>
+                <div class="form-group">
+                    <label>Email:</label> <input type="text" required value="{{employerProfile['email']}}"
+                                                 class="form-control email">
+                </div>
+                <div class="form-group ">
+                    <label>Birth Date:</label>
+                    <input placeholder="Date" class="form-control birthDay" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" value="{{dateBirth}} ">
+                </div>
+                <div class="form-group">
+
+                    <label>Address:</label> <input class="form-control" id="geocomplete"
+                                                   type="text" required
+                                                   name="location" value="{{employerProfile['address']}}"
+                                                   placeholder="Type in an address" size="90" autocomplete="on">
+                </div>
+                <div class="form-group">
+                    <label>Phone number:</label> <input type="text" required
+                                                        value="{{employerProfile['phone_number']}}"
+                                                        class="form-control phoneNumber">
+                </div>
+                <div class="form-group">
+                    <label>LinkedIn:</label> <input type="text" required
+                                                    class="form-control linkedin"
+                                                    ng-model="employerProfile['linkedin']"
+                                                    value="{{companyProfile.user['linkedin']}}">
+                </div>
+
+                <div class="buttonBorder">
+
+                    <button type="submit" class="btn btn-default">
+                        <img class="Garrow" src="images/Garrow.png">
+                        Save
+                    </button>
+                </div>
+
+            </form>
+        </div>
+        <div ng-show="tab == 1" class="tabsContent fade in active">
+            <div class="tab-content">
+                <div class="tabsContent fade in active">
+
+                    <!-- Content from here -->
+                    <form ng-submit="submitCompanyDetails()">
+
+                        <h6 class="requiredError"> *All the fields are required!</h6>
+                        <div class="form-group">
+                            <label for="companyName">Company name:</label> <input type="text" required
+                                                                                  value="{{companyProfile['name']}}"
+                                                                                  class="form-control companyName"
+                                                                                  id="companyName" name="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="companypc">P.C:</label> <input type="text" required
+                                                                       value="{{companyProfile['p_c']}}"
+                                                                       class="form-control companyPC" id="companypc"
+                                                                       name="pc">
+                        </div>
+                        <div class="form-group">
+                            <label>Address:</label> <input class="form-control" id="geocomplete2"
+                                                           type="text" required
+                                                           name="address" value="{{companyProfile['address']}}"
+                                                           placeholder="Type in an address" size="90" autocomplete="on">
+                        </div>
+                        <div class="form-group">
+                            <label>Phone number:</label> <input type="text" required
+                                                                value="{{companyProfile['phone_number']}}"
+                                                                class="form-control companyPhoneNumber"
+                                                                id="usr" name="address">
+                        </div>
+
+                        <img class="GarrowInput" src="images/Garrow.png">
+
+                        <input type="button" ng-show="password == false" class="btn btn-default"
+                               ng-click="changePasswordSect()" value="Change Password"/>
+
+                        <div class="form-group password" >
+                            <label>Company Password:</label> <input type="password" maxlength="5"
+                                                                    class="form-control passwordCompany"
+                                                                    value="{{companyProfile['password'].substr(0,5)}}">
+                        </div>
+
+
+                        <div class="form-group password newPassword">
+                            <label>Change to New Password:</label> <input type="password" maxlength="5"
+                                                                          class="form-control newPasswordCompany"
+                                                                          value="">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="editLogo">Logo:</label>
+
+                            <input type="text" ng-model="word"
+                                   class="form-control" name="logo"
+                                   value="{{companyProfile['logo']}}"
+                                   placeholder="please type Company name">
+                            <img class="GarrowInput" src="images/Garrow.png">
+
+                            <input
+                                    type="button" ng-click="logo(word)" class="btn btn-default" value="Search Logo!"/>
+                        </div>
+
+
+                        <div class="companyLogo" ng-if="companyProfile['logo']">
+                            <img ng-src={{companyProfile['logo']}}>
+                        </div>
+
+                        <div ng-repeat="logo in logos">
+                            <div data-toggle="buttons" class="logos">
+                                <label class="btn btn-default" ng-click="newLogo()" name='newLogo'>
+                                    <input type="radio" name="logos">
+                                    <span class="glyphicon glyphicon-ok"></span>
+                                    <img ng-src={{logo}}>
+                                </label>
+                            </div>
+                        </div>
+
+
+                        <div  class="btn btn-default existingCompany" ng-click="signExistingCompany()">
+                            <img class="Garrow" src="images/Garrow.png">
+                            Sign Existing Company
+                        </div>
+                        <!-- Existing compenies -->
+                        <div class="tab-content existingCompanis signExistingCompany">
+                            <div class="tabsContent fade in active">
+                                <div ng-repeat="c in companies">
+                                    <div data-toggle="buttons" class="companies">
+                                        <label class="btn btn-default" ng-click="checkCompany(c._id)">
+                                            <input type="radio" name="companies">
+                                            <span class="glyphicon glyphicon-ok"></span>
+                                            <img ng-src={{c.logo}}>
+                                            <hr>
+                                            <h3>{{c.name}}</h3>
+
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="buttonBorder">
+                            <button type="submit" class="btn btn-default">
+                                <img class="Garrow" src="images/Garrow.png">
+
+                                Save
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <section class="modal fade" id="update" role="dialog">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" >&times;</button>
+                    <h4 class="modal-title">{{status}}</h4>
+                    <input ng-show="chooseCompanyModal == true" type="text" placeholder="Please write password: "
+                           ng-model="passForCompany"/>
+                </div>
+                <div class="modal-footer">
+
+                    <div class="buttonBorder">
+
+                        <button ng-show="chooseCompanyModal == true" type="button" class="btn btn-default"
+                                data-dismiss="modal" ng-click="sendPassword()">
+                            Send
+                        </button>
+                    </div>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="closeModal()">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Modal -->
+    <section class="modal fade" id="wrong" role="dialog">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">{{status}}</h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="closeModal()">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

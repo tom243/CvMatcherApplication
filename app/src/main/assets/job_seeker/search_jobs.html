@@ -1,0 +1,111 @@
+<div class="searchJobsImgCover1"></div>
+
+
+<div class="searchJobsWrapper" ng-init="init();getMainJson();sort('-date');">
+    <!-- <img class="jobSeekerLogo" src="images/jobsee.png">-->
+
+
+    <h3 class="navigation"></h3>
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+
+    <div class="myJobsBox">
+        <header>
+            <h2>Find your next job</h2>
+        </header>
+
+        <input type="text" placeholder="Find Job" ng-model="searchText"
+               class="form-control searchText">
+        <button type="button" class="btn btn-default" ng-click="getMainJson(); showSortOptions()">All Jobs
+            <img class="Garrow" src="images/Garrow.png">
+        </button>
+
+
+        <button type="button" class="btn btn-default" ng-click="getTopTen()" ng-if="cv_exist == true">CV Match Jobs
+            <img class="Garrow" src="images/Garrow.png">
+        </button>
+
+        <div class="flc">
+            <button type="button" class="btn btn-default sort_compability"
+                    ng-click="sort('compatibility_level')">Sort By Compatibility
+                <img class="Garrow" src="images/Garrow.png">
+            </button>
+            <button type="button" class="btn btn-default sort_date" ng-click="sort('-date')">Sort
+                By Date
+                <img class="Garrow" src="images/Garrow.png">
+            </button>
+        </div>
+    </div>
+
+
+    <div class="jobsList">
+        <ul>
+            <li class="jobListLi  animated fadeInUp"
+                ng-repeat="job in jobSeekerJobs | filter:searchText | orderBy:sortby">
+                <div data-toggle="collapse" data-target="#collepse-{{$index}}" ng-click="collepse($index)">
+                    <a href="">
+                        <img class="logoInJobBox"
+                             ng-src="{{job.user.company.logo}}">
+                        <img class="logoInJobBox" ng-if="!job.user.company.logo"
+                             ng-src="images/logo-default.png">
+                        <article class="visibleText">
+
+                            <p ng-model="searchText.name"
+                               ng-bind-html="job.original_text.title | highlight:searchText">
+                                {{job['original_text']['title']}}</p>
+
+                            <p>
+                                <i class='fa fa-clock-o'></i>
+                               <span ng-repeat="scope_of_position in job['scope_of_position'] track by $index">
+                                   <span ng-if="$index !== 0"> | </span>
+                                   <span ng-if="scope_of_position == 'full'" ng-model="searchText.scope_of_position"> Full Time Job </span>
+                                   <span ng-if="scope_of_position == 'part'" ng-model="searchText.scope_of_position"> Part Time Job </span>
+                                   <span ng-if="scope_of_position == 'hours'" ng-model="searchText.scope_of_position"> Job by Hours </span>
+                                </span>
+                            </p>
+
+                            <span ng-if="getTopTenJobs == true">{{job.matcher_grade}} CVMatcher Grade</span>
+                            <img class="diploma" ng-if="getTopTenJobs == true"
+                                 ng-src="images/diploma_grade.png">
+
+                            <p class="searchTitles">Address: </p>
+                            <h5  ng-repeat="j in job.locations  track by $index"
+                                ng-bind-html="($index+1) +'. ' + j | highlight:searchText"></h5>
+
+
+                            <p>{{job.date}}</p>
+                        </article>
+
+                        <img class="arrow-down" src="images/arrow-down.png">
+                        <section circle id="{{ 'circle-container-' + $index }}"
+                                 data-compability="{{job.compatibility_level}}">
+                            <h5>{{job.compatibility_level}}%</h5>
+                        </section>
+                        <h5 class="compatibilityText">Compatibility</h5>
+                    </a>
+                    <article id="collepse-{{$index}}" class="collapse searchTitles">
+                        <p><span>Description:</span> {{job["original_text"].description}}</p>
+
+                        <div class="skills">
+                            <p><span>Requirements Must:</span> {{job.original_text["requirements"].split("|||")[0]}}</p>
+
+                            <p><span>Advantage:</span> {{job.original_text["requirements"].split("|||")[1]}}</p></div>
+                        <section>
+
+                        </section>
+                        <a class="checkMyCVButton" ng-if="page != 'yourjobs'" ng-show="cv_exist == true"
+                           ng-href="#/search-jobs/{{job['_id']}}/matchpage"
+                           ng-click="saveData(job['original_text']['title'],job.compatibility_level,job.user.company.logo,job.date);"
+                           class="btn btn-default"><img class="Garrow" src="images/Garrow.png">Check
+                            my CV</a>
+                        <img class="arrow-up" src="images/arrow-up.png">
+                    </article>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+
+
+

@@ -1,0 +1,91 @@
+.resumeWrapper .timeline-badge .fa {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: small;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.resumeWrapper {
+    margin-top: 0;
+}
+
+.resumeWrapper .resumeYears > div {
+
+    background: transparent;
+}
+
+.resumeWrapper .skillsTitle {
+    margin-bottom: 22px;
+    text-align: left;
+    color: #fff;
+    margin-top: 44px;
+}
+
+.resumeWrapper h4 {
+    font-size: 18px;
+    padding-bottom: 16px;
+    padding-top: 0px;
+}
+
+.resumeWrapper div#formulasAppend {
+    margin-bottom: 40px;
+    padding-top: 24px;
+}
+
+.resumeWrapper div#formulasAppend p {
+    color: #FFFFFF;
+    font-size: 16px;
+    display: block;
+    text-align: left;
+    margin-top: 5px;
+}
+
+.resumeWrapper .userDetailsBox {
+    padding-top: 32px;
+    color: #fff;
+    border: 1px solid #fff;
+}
+
+.resumeWrapper h5 {
+    font-size: 20px;
+    padding-top: 20px;
+    padding-bottom: 16px;
+}
+
+.resumeWrapper .userDetailsBox h3 {
+    font-size: 28px;
+    text-decoration: underline;
+}
+
+.resumeWrapper > div h3 {
+    font-size: 2.2vw;
+    padding-bottom: 10px;
+}
+
+.resumeWrapper > div h4 {
+    font-size: 1.5vw;
+}
+
+.resumeWrapper > div h3, .resumeWrapper > div h4 {
+    color: #ebebeb;
+}
+
+.resumeWrapper .resumeYears > div {
+    margin: -2px auto;
+}
+
+.modal-content {
+    margin-top: 64px;
+}
+
+.resumeWrapper #predictAppend img{
+    float: left;
+    width: 30px;
+    margin-right: 14px;
+}
+
+.resumeWrapper .predictAppendP{
+    width: 100%;
+}

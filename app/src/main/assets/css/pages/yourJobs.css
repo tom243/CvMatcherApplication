@@ -1,0 +1,58 @@
+.yourJobsWrapper .form-control {
+    width: 100%;
+}
+
+.yourJobsWrapper .trashMyJobs{
+    position: absolute;
+    right: 26px;
+    z-index: 2;
+    cursor: pointer;
+    top: 4px;
+    font-size: x-large;
+}
+
+.yourJobsWrapper article#collepse-6 {
+    padding-right: 50px;
+}
+
+.yourJobsWrapper .myJobsBox {
+    margin-top: 18px;
+}
+
+.yourJobsWrapper .companyLogoN {
+    float: left;
+    width: 86px;
+    position: absolute;
+    left: 14px;
+    top: 31px;
+}
+
+.yourJobsWrapper .jobListLi i.fa.fa-times {
+    position: absolute;
+    top: 1px;
+    left: -30px;
+    font-size: 42px;
+    float: left;
+}
+
+.yourJobsWrapper .jobsList article {
+    margin-top: -17px;
+    padding-top: 18px;
+    margin-left: 120px;
+    padding-right: 206px;
+}
+
+.yourJobsWrapper .LTitle{
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.yourJobsWrapper .LTitle p span{
+    font-size: 21px;
+    font-weight: bold;
+    display: block;
+}
+
+.yourJobsWrapper .titleYour{
+    width: 76%;
+}
